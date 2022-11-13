@@ -1,0 +1,50 @@
+// Each #kernel tells which function to compile; you can have many kernels
+#pragma kernel EdgeTriangles
+
+// Inputs
+int edgeCount;
+StructuredBuffer<int2> edges;
+int triangleCount;
+StructuredBuffer<int3> vertexTriangles;
+
+// Output
+RWStructuredBuffer<int3> edgeTriangles;
+
+[numthreads(32,1,1)]
+void EdgeTriangles(uint3 id : SV_DispatchThreadID)
+{
+    if(id.x >= triangleCount)
+        return;
+    
+    int3 triangleVertices = vertexTriangles[id.x];
+    
+    // init as not found
+    edgeTriangles[id.x] = int3(-1, -1, -1);
+    
+    int edgesFound = 0;
+    for (int i = 0; i < edgeCount; i++)
+    {
+        int edgeStart = edges[i].x;
+        int edgeEnd = edges[i].y;
+        
+        bool startContained = 
+            (triangleVertices.x == edgeStart) ||
+            (triangleVertices.y == edgeStart) ||
+            (triangleVertices.z == edgeStart);
+        bool endContained = 
+            (triangleVertices.x == edgeEnd) ||
+            (triangleVertices.y == edgeEnd) ||
+            (triangleVertices.z == edgeEnd);
+        
+        if (startContained && endContained)
+        {
+            edgeTriangles[id.x][edgesFound] = i;
+            edgesFound++;
+            
+            if(edgesFound == 3)
+                return;
+            
+        }
+    }
+
+}
