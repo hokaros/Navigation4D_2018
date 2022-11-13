@@ -55,8 +55,19 @@ public class Polytope3
             int edgeEnd = edges[edgeIndex].endId;
             if(i == 0)
             {
-                vertexFace.Add(edgeStart);
-                vertexFace.Add(edgeEnd);
+                // Add both vertices, but add first the one that isn't present in the next edge
+                int nextEdgeStart = edges[edgeFace[i + 1]].startId;
+                int nextEdgeEnd = edges[edgeFace[i + 1]].endId;
+                if (edgeStart != nextEdgeStart && edgeStart != nextEdgeEnd)
+                {
+                    vertexFace.Add(edgeStart);
+                    vertexFace.Add(edgeEnd);
+                }
+                else
+                {
+                    vertexFace.Add(edgeEnd);
+                    vertexFace.Add(edgeStart);
+                }
             }
             else
             {
