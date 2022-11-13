@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 4acfcc074b5fbe5448c312e8f4fbcfd0
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - selectionButtonPrefab: {fileID: 77383127437217459, guid: 26afd44590931b54fae270d2c90d9f49, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
