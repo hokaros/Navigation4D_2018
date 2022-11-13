@@ -61,9 +61,15 @@ public class GeometryIntersection
         foreach(var entry in faceIntersections)
         {
             List<Vector4> faceIntersectionPoints = entry.Value;
+            faceIntersectionPoints = EliminateDuplicates(faceIntersectionPoints);
             if (faceIntersectionPoints.Count != 2)
             {
-                Debug.LogError("Intersections with a face: " + faceIntersectionPoints.Count);
+                StringBuilder allPoints = new StringBuilder();
+                foreach(Vector4 p in faceIntersectionPoints)
+                {
+                    allPoints.Append($"{p}, ");
+                }
+                Debug.LogError($"Intersections with a face: {faceIntersectionPoints.Count}. {allPoints}");
                 if (faceIntersectionPoints.Count < 2)
                     continue; // can't even form a single edge
             }
@@ -161,5 +167,29 @@ public class GeometryIntersection
         }
 
         return faceIntersections;
+    }
+
+    private static List<Vector4> EliminateDuplicates(List<Vector4> points)
+    {
+        List<Vector4> uniquePoints = new List<Vector4>();
+
+        foreach(Vector4 p in points)
+        {
+            bool isNew = true;
+            foreach(Vector4 saved in uniquePoints)
+            {
+                if(p == saved)
+                {
+                    isNew = false;
+                    break;
+                }
+            }
+
+            if (isNew)
+            {
+                uniquePoints.Add(p);
+            }
+        }
+        return uniquePoints;
     }
 }
