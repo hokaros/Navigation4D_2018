@@ -29,6 +29,9 @@ public class Polytope3
             trianglesArray[6 * i] = triangle.x;
             trianglesArray[6 * i + 1] = triangle.y;
             trianglesArray[6 * i + 2] = triangle.z;
+            trianglesArray[6 * i + 3] = triangle.z;
+            trianglesArray[6 * i + 4] = triangle.y;
+            trianglesArray[6 * i + 5] = triangle.x;
         }
 
         return trianglesArray;
