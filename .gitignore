@@ -69,3 +69,7 @@ Assets/UMotionEditor/Data/EditorUndoStackPointer.asset
 # Other
 UserSettings
 UnityLockFile
+
+# Hidden libraries
+Assets/LZWPlib
+Assets/LZWPlib.meta

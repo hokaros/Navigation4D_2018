@@ -15,7 +15,7 @@ public class GeometryIntersection
     /// <returns></returns>
     public static Polytope3 GetNativeIntersection(Polytope4 polytope, float faceCoplanarityTolerance)
     {
-        Transform4 cameraTransform4 = Camera.main.GetComponent<Transform4>();
+        Transform4 cameraTransform4 = GameObject.FindGameObjectsWithTag("MainCamera")[0].GetComponent<Transform4>();// Camera.main.GetComponent<Transform4>();
 
         // Get native hyperplane
         Hyperplane4 nativeHyperplane = cameraTransform4.GetNativeHyperplane();
@@ -31,7 +31,7 @@ public class GeometryIntersection
             Vector4 vertexCam = cameraTransform4.PointToLocal(v);
 
             // The result is in 3D local space of the camera. Perform traditional transforming to world space
-            return Camera.main.transform.TransformPoint(new Vector3(vertexCam.x, vertexCam.y, vertexCam.z));
+            return /*Camera.main*/GameObject.FindGameObjectsWithTag("MainCamera")[0].transform.TransformPoint(new Vector3(vertexCam.x, vertexCam.y, vertexCam.z));
         }).ToList();
 
         List<VertexEdge3> edgesCameraSpace = new List<VertexEdge3>();

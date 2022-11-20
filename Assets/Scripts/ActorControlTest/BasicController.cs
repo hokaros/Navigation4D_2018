@@ -25,10 +25,10 @@ public class BasicController : MonoBehaviour
     private void UpdatePosition()
     {
         //Debug.Log($"{Input.GetAxis("Forward")}, {Input.GetAxis("4D_W")}");
-        movement = transform4.Forward * Input.GetAxis("Vertical");
-        movement += transform4.Right * Input.GetAxis("Horizontal");
-        movement += transform4.Up * Input.GetAxis("Forward");
-        movement += transform4.WPositive * Input.GetAxis("4D_W");
+        movement = transform4.Forward * Lzwp.input.flysticks[0].joysticks[0]; //Input.GetAxis("Vertical");
+        movement += transform4.Right * Lzwp.input.flysticks[0].joysticks[1]; //Input.GetAxis("Horizontal");
+        movement += transform4.Up * Lzwp.input.flysticks[1].joysticks[0]; //Input.GetAxis("Forward");
+        movement += transform4.WPositive * Lzwp.input.flysticks[1].joysticks[1]; // Input.GetAxis("4D_W");
         movement *= Time.deltaTime;
         movement *= movementSpeed;
         transform4.Position += movement;
