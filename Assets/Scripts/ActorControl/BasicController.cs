@@ -7,28 +7,33 @@ public class BasicController : MonoBehaviour
 {
     [SerializeField] private float rotationSpeed = 1.0f;
     [SerializeField] private float movementSpeed = 1.0f;
+    [SerializeField] private bool useLZWPInput = true;
 
     private Transform4 transform4;
     private Vector4 movement;
 
+    private PCController4D pcInput = new PCController4D();
+    private LZWPController4D lzwpInput = new LZWPController4D();
+    private IInput4D input => useLZWPInput ? (IInput4D)lzwpInput : (IInput4D)pcInput;
+
     private void UpdateRotation()
     {
-        transform4.Rotation.Xy += Input.GetAxis("4D_xy") * Time.deltaTime * rotationSpeed;
-        transform4.Rotation.Xz += Input.GetAxis("4D_xz") * Time.deltaTime * rotationSpeed;
-        transform4.Rotation.Xw += Input.GetAxis("4D_xw") * Time.deltaTime * rotationSpeed;
-        transform4.Rotation.Yz += Input.GetAxis("4D_yz") * Time.deltaTime * rotationSpeed;
-        transform4.Rotation.Yw += Input.GetAxis("4D_yw") * Time.deltaTime * rotationSpeed;
-        transform4.Rotation.Zw += Input.GetAxis("4D_zw") * Time.deltaTime * rotationSpeed;
+        transform4.Rotation.Xy += input.GetXYRotation() * Time.deltaTime * rotationSpeed;
+        transform4.Rotation.Xz += input.GetXZRotation() * Time.deltaTime * rotationSpeed;
+        transform4.Rotation.Xw += input.GetXWRotation() * Time.deltaTime * rotationSpeed;
+        transform4.Rotation.Yz += input.GetYZRotation() * Time.deltaTime * rotationSpeed;
+        transform4.Rotation.Yw += input.GetYWRotation() * Time.deltaTime * rotationSpeed;
+        transform4.Rotation.Zw += input.GetZWRotation() * Time.deltaTime * rotationSpeed;
         transform4.NormalizeRotation();
     }
 
     private void UpdatePosition()
     {
         //Debug.Log($"{Input.GetAxis("Forward")}, {Input.GetAxis("4D_W")}");
-        movement = transform4.Forward * Lzwp.input.flysticks[0].joysticks[0]; //Input.GetAxis("Vertical");
-        movement += transform4.Right * Lzwp.input.flysticks[0].joysticks[1]; //Input.GetAxis("Horizontal");
-        movement += transform4.Up * Lzwp.input.flysticks[1].joysticks[0]; //Input.GetAxis("Forward");
-        movement += transform4.WPositive * Lzwp.input.flysticks[1].joysticks[1]; // Input.GetAxis("4D_W");
+        movement = transform4.Forward * input.GetZAxis(); //Input.GetAxis("Vertical");
+        movement += transform4.Right * input.GetXAxis(); //Input.GetAxis("Horizontal");
+        movement += transform4.Up * input.GetYAxis(); //Input.GetAxis("Forward");
+        movement += transform4.WPositive * input.GetWAxis(); // Input.GetAxis("4D_W");
         movement *= Time.deltaTime;
         movement *= movementSpeed;
         transform4.Position += movement;
