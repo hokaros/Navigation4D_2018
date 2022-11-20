@@ -15,7 +15,7 @@ public class GeometryIntersection
     /// <returns></returns>
     public static Polytope3 GetNativeIntersection(Polytope4 polytope, float faceCoplanarityTolerance)
     {
-        Transform4 cameraTransform4 = Camera.main.GetComponent<Transform4>();
+        Transform4 cameraTransform4 = GameObject.FindGameObjectsWithTag("MainCamera")[0].GetComponent<Transform4>();// Camera.main.GetComponent<Transform4>();
 
         // Get native hyperplane
         Hyperplane4 nativeHyperplane = cameraTransform4.GetNativeHyperplane();
@@ -31,7 +31,7 @@ public class GeometryIntersection
             Vector4 vertexCam = cameraTransform4.PointToLocal(v);
 
             // The result is in 3D local space of the camera. Perform traditional transforming to world space
-            return Camera.main.transform.TransformPoint(new Vector3(vertexCam.x, vertexCam.y, vertexCam.z));
+            return /*Camera.main*/GameObject.FindGameObjectsWithTag("MainCamera")[0].transform.TransformPoint(new Vector3(vertexCam.x, vertexCam.y, vertexCam.z));
         }).ToList();
 
         List<VertexEdge3> edgesCameraSpace = new List<VertexEdge3>();
@@ -61,9 +61,15 @@ public class GeometryIntersection
         foreach(var entry in faceIntersections)
         {
             List<Vector4> faceIntersectionPoints = entry.Value;
+            faceIntersectionPoints = EliminateDuplicates(faceIntersectionPoints);
             if (faceIntersectionPoints.Count != 2)
             {
-                Debug.LogError("Intersections with a face: " + faceIntersectionPoints.Count);
+                StringBuilder allPoints = new StringBuilder();
+                foreach(Vector4 p in faceIntersectionPoints)
+                {
+                    allPoints.Append($"{p}, ");
+                }
+                Debug.LogError($"Intersections with a face: {faceIntersectionPoints.Count}. {allPoints}");
                 if (faceIntersectionPoints.Count < 2)
                     continue; // can't even form a single edge
             }
@@ -161,5 +167,29 @@ public class GeometryIntersection
         }
 
         return faceIntersections;
+    }
+
+    private static List<Vector4> EliminateDuplicates(List<Vector4> points)
+    {
+        List<Vector4> uniquePoints = new List<Vector4>();
+
+        foreach(Vector4 p in points)
+        {
+            bool isNew = true;
+            foreach(Vector4 saved in uniquePoints)
+            {
+                if(p == saved)
+                {
+                    isNew = false;
+                    break;
+                }
+            }
+
+            if (isNew)
+            {
+                uniquePoints.Add(p);
+            }
+        }
+        return uniquePoints;
     }
 }
