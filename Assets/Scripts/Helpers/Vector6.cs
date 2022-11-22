@@ -14,6 +14,21 @@ public class Vector6
     [SerializeField] float yw;
     [SerializeField] float zw;
 
+
+    public Vector6()
+    {
+
+    }
+    public Vector6(float xy, float xz, float xw, float yz, float yw, float zw)
+    {
+        this.xy = xy;
+        this.xz = xz;
+        this.xw = xw;
+        this.yz = yz;
+        this.yw = yw;
+        this.zw = zw;
+    }
+
     public float Xy { get => xy; set => xy = value; }
     public float Xz { get => xz; set => xz = value; }
     public float Xw { get => xw; set => xw = value; }
