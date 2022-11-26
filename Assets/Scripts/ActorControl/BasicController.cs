@@ -18,13 +18,12 @@ public class BasicController : MonoBehaviour
 
     private void UpdateRotation()
     {
-        transform4.Rotation.Xy += input.GetXYRotation() * Time.deltaTime * rotationSpeed;
-        transform4.Rotation.Xz += input.GetXZRotation() * Time.deltaTime * rotationSpeed;
-        transform4.Rotation.Xw += input.GetXWRotation() * Time.deltaTime * rotationSpeed;
-        transform4.Rotation.Yz += input.GetYZRotation() * Time.deltaTime * rotationSpeed;
-        transform4.Rotation.Yw += input.GetYWRotation() * Time.deltaTime * rotationSpeed;
-        transform4.Rotation.Zw += input.GetZWRotation() * Time.deltaTime * rotationSpeed;
-        transform4.NormalizeRotation();
+        transform4.RotateInLocal(Axis.x, Axis.y, input.GetXYRotation() * Time.deltaTime * rotationSpeed);
+        transform4.RotateInLocal(Axis.x, Axis.z, input.GetXZRotation() * Time.deltaTime * rotationSpeed);
+        transform4.RotateInLocal(Axis.x, Axis.w, input.GetXWRotation() * Time.deltaTime * rotationSpeed);
+        transform4.RotateInLocal(Axis.y, Axis.z, input.GetYZRotation() * Time.deltaTime * rotationSpeed);
+        transform4.RotateInLocal(Axis.y, Axis.w, input.GetYWRotation() * Time.deltaTime * rotationSpeed);
+        transform4.RotateInLocal(Axis.z, Axis.w, input.GetZWRotation() * Time.deltaTime * rotationSpeed);
     }
 
     private void UpdatePosition()

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,12 +14,6 @@ public class Transform4 : MonoBehaviour
         set => position = value;
     }
     public Vector4 GlobalPosition => PointToWorld(Vector4.zero);
-    public Vector6 Rotation
-    {
-        get => rotation;
-
-        set => rotation = value;
-    }
     //public Vector4 Forward { get { return Rotation4d.GetRotatedPoint(Vectors4.Forward, rotation).normalized; } }
     public Vector4 Forward => (PointToWorld(Vectors4.Forward) - GlobalPosition);
     public Vector4 Backward => (PointToWorld(Vectors4.Backward) - GlobalPosition);
@@ -29,12 +24,24 @@ public class Transform4 : MonoBehaviour
     public Vector4 WPositive => (PointToWorld(Vectors4.WPositive) - GlobalPosition);
     public Vector4 WNegative => (PointToWorld(Vectors4.WNegative) - GlobalPosition);
 
+    private Rotation4d rotationState = new Rotation4d();
+
+    /// <summary>
+    /// Rotate in plane spanned by local axes: a1 and a2
+    /// </summary>
+    /// <param name="a1"></param>
+    /// <param name="a2"></param>
+    public void RotateInLocal(Axis a1, Axis a2, float angle)
+    {
+        rotationState.RotateInLocal(a1, a2, angle);
+    }
+
     /// <summary>
     /// Transforms position from local space to world space
     /// </summary>
     public Vector4 PointToWorld(Vector4 point)
     {
-        point = Rotation4d.GetRotatedPoint(point, Rotation);
+        point = rotationState.GetRotatedPoint(point);
 
         Vector4 outerSpacePoint = Position + point;
 
@@ -59,7 +66,7 @@ public class Transform4 : MonoBehaviour
             point = transform.GetParent4().Position;
 
         Vector4 toPointWorld = point - Position;
-        return Rotation4d.GetRotatedPoint(toPointWorld, -Rotation, reverse:true);
+        return rotationState.GetUnrotatedPoint(toPointWorld);
     }
 
     public void NormalizeRotation()
@@ -84,5 +91,10 @@ public class Transform4 : MonoBehaviour
     public void Update()
     {
 
+    }
+
+    private void Awake()
+    {
+        rotationState = new Rotation4d(rotation);
     }
 }
