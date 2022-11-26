@@ -31,42 +31,9 @@ public class EdgeMesh4
     /// <returns></returns>
     public static EdgeMesh4 FromVertexEdges(List<VertexEdge4> edges)
     {
-        float mergeTolerance = 10e-6f;
-
-        List<Vector4> vertices = new List<Vector4>();
-        List<Edge> indexEdges = new List<Edge>();
-
-        // Merge vertex positions
-        foreach(VertexEdge4 vertexEdge in edges)
-        {
-            Vector4 edgeStart = vertexEdge.start;
-            Vector4 edgeEnd = vertexEdge.end;
-            int startIndex, endIndex;
-
-            int closestToStartVertexIndex = FindClosestVertex(vertices, edgeStart, mergeTolerance);
-            if(closestToStartVertexIndex != -1)
-            { // Reuse a saved vertex
-                startIndex = closestToStartVertexIndex;
-            }
-            else
-            { // Save a new vertex
-                vertices.Add(edgeStart);
-                startIndex = vertices.Count - 1;
-            }
-
-            int closestToEndVertexIndex = FindClosestVertex(vertices, edgeEnd, mergeTolerance);
-            if (closestToEndVertexIndex != -1)
-            { // Reuse a saved vertex
-                endIndex = closestToEndVertexIndex;
-            }
-            else
-            { // Save a new vertex
-                vertices.Add(edgeEnd);
-                endIndex = vertices.Count - 1;
-            }
-
-            indexEdges.Add(new Edge(startIndex, endIndex));
-        }
+        List<Vector4> vertices;
+        List<Edge> indexEdges;
+        VertexEdgesToIndexEdges(edges, out vertices,  out indexEdges);
 
         return new EdgeMesh4(vertices, indexEdges);
     }
@@ -98,6 +65,76 @@ public class EdgeMesh4
         }
 
         return faces;
+    }
+
+    private static void VertexEdgesToIndexEdges(List<VertexEdge4> vertexEdges, out List<Vector4> uniqueVertices, out List<Edge> indexEdges)
+    {
+        float mergeTolerance = 10e-6f;
+
+        uniqueVertices = new List<Vector4>();
+        indexEdges = new List<Edge>();
+
+        // Prepare a data structure to merge edges
+        Dictionary<int, List<int>> vertexNeighbours = new Dictionary<int, List<int>>(); // index of vertex -> list of indices of its neighbours
+
+        // Merge vertex positions
+        foreach (VertexEdge4 vertexEdge in vertexEdges)
+        {
+            Vector4 edgeStart = vertexEdge.start;
+            Vector4 edgeEnd = vertexEdge.end;
+            int startIndex, endIndex;
+
+            int closestToStartVertexIndex = FindClosestVertex(uniqueVertices, edgeStart, mergeTolerance);
+            if (closestToStartVertexIndex != -1)
+            { // Reuse a saved vertex
+                startIndex = closestToStartVertexIndex;
+            }
+            else
+            { // Save a new vertex
+                uniqueVertices.Add(edgeStart);
+                startIndex = uniqueVertices.Count - 1;
+            }
+
+            int closestToEndVertexIndex = FindClosestVertex(uniqueVertices, edgeEnd, mergeTolerance);
+            if (closestToEndVertexIndex != -1)
+            { // Reuse a saved vertex
+                endIndex = closestToEndVertexIndex;
+            }
+            else
+            { // Save a new vertex
+                uniqueVertices.Add(edgeEnd);
+                endIndex = uniqueVertices.Count - 1;
+            }
+
+            // Check if the edge already exists and add to the dictionary otherwise
+            bool edgePresent = true;
+            if (!vertexNeighbours.ContainsKey(startIndex))
+            {
+                edgePresent = false;
+                vertexNeighbours.Add(startIndex, new List<int>());
+            }
+            if (!vertexNeighbours[startIndex].Contains(endIndex))
+            {
+                edgePresent = false;
+                vertexNeighbours[startIndex].Add(endIndex);
+            }
+            
+            if (!vertexNeighbours.ContainsKey(endIndex))
+            {
+                edgePresent = false;
+                vertexNeighbours.Add(endIndex, new List<int>());
+            }
+            if (!vertexNeighbours[endIndex].Contains(startIndex))
+            {
+                edgePresent = false;
+                vertexNeighbours[endIndex].Add(startIndex);
+            }
+
+            if (!edgePresent)
+            {
+                indexEdges.Add(new Edge(startIndex, endIndex));
+            }
+        }
     }
 
     /// <summary>
