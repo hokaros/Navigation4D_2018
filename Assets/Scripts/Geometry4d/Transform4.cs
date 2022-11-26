@@ -6,7 +6,7 @@ using UnityEngine;
 public class Transform4 : MonoBehaviour
 {
     [SerializeField] Vector4 position;
-    [SerializeField] Vector6 rotation = new Vector6();
+    [SerializeField] Vector6 initialRotationotation = new Vector6();
 
     public Vector4 Position
     {
@@ -69,16 +69,6 @@ public class Transform4 : MonoBehaviour
         return rotationState.GetUnrotatedPoint(toPointWorld);
     }
 
-    public void NormalizeRotation()
-    {
-        const float fullCycle = 2 * Mathf.PI;
-
-        for(int i = 0; i < 6; i++)
-        {
-            rotation[i] = rotation[i] % fullCycle;
-        }
-    }
-
     public Hyperplane4 GetNativeHyperplane()
     {
         Vector4 localWToWorld = PointToWorld(new Vector4(0, 0, 0, 1)) - GlobalPosition;
@@ -95,6 +85,6 @@ public class Transform4 : MonoBehaviour
 
     private void Awake()
     {
-        rotationState = new Rotation4d(rotation);
+        rotationState = new Rotation4d(initialRotationotation);
     }
 }
