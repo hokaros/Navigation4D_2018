@@ -10,7 +10,7 @@ public class ShaderVisualizerIntersectioned : MonoBehaviour, IShaderVisualizer
     public Material faceMaterial;
     public Material wideEdgesMaterial;
     public Material lineEdgesMaterial;
-    [SerializeField] float faceCoplanarityTolerance = 0.01f;
+    [SerializeField] float faceCoplanarityTolerance = 0.001f;
 
     private Mesh mesh;
 
