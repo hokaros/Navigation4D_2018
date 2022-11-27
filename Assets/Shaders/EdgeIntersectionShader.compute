@@ -1,0 +1,93 @@
+﻿// Each #kernel tells which function to compile; you can have many kernels
+#pragma kernel IntersectEdges
+#include "Hyperplane4.hlsl"
+
+// Inputs
+int vertexCount;
+StructuredBuffer<float4> vertices;
+
+int edgeCount;
+StructuredBuffer<int2> edges;
+
+// Hyperplane to intersect with
+float hyperplaneA;
+float hyperplaneB;
+float hyperplaneC;
+float hyperplaneD;
+float hyperplaneE;
+
+// Outputs
+struct IntersectionInfo
+{
+    int edgeIndex; // Index of the intersected edge
+    float4 intersectionPoint;
+};
+RWStructuredBuffer<IntersectionInfo> intersections;
+RWStructuredBuffer<int> intersectionCount; // 1-element buffer. The CPU should initialize this with 0
+
+
+// Helper functions
+void saveIntersection(int edgeIndex, float4 intersectionPoint)
+{
+    int myIndex;
+    InterlockedAdd(intersectionCount[0], 1, myIndex);
+    
+    IntersectionInfo intersectionInfo;
+    intersectionInfo.edgeIndex = edgeIndex;
+    intersectionInfo.intersectionPoint = intersectionPoint;
+    intersections[myIndex] = intersectionInfo;
+}
+
+// Main functions
+[numthreads(32,1,1)]
+void IntersectEdges(uint3 id : SV_DispatchThreadID)
+{
+	if(id.x >= edgeCount)
+        return;
+    
+    int edgeStartIndex = edges[id.x].x;
+    int edgeEndIndex = edges[id.x].y;
+    
+    float4 edgeStart = vertices[edgeStartIndex];
+    float4 edgeEnd = vertices[edgeEndIndex];
+    
+    Line4 edgeLine = lineFromPoints(edgeStart, edgeEnd);
+    
+    Hyperplane4 hyperplane;
+    hyperplane.a = hyperplaneA;
+    hyperplane.b = hyperplaneB;
+    hyperplane.c = hyperplaneC;
+    hyperplane.d = hyperplaneD;
+    hyperplane.e = hyperplaneE;
+    float4 crossing = crossingPoint(hyperplane, edgeLine);
+    if(isinf(crossing.x))
+        return; // No intersection (the edge is parallel to the hyperplane)
+    
+    // Check if the crossing point is between the bounds of the edge
+    float4 toCross = crossing - edgeStart;
+    float4 toEdgeEnd = edgeEnd - edgeStart;
+    
+    float fromStartToEndFactor = 1.0/0; // init as infinity
+    if(toEdgeEnd.x != 0)
+    {
+        fromStartToEndFactor = toCross.x / toEdgeEnd.x;
+    }
+    else if (toEdgeEnd.y != 0)
+    {
+        fromStartToEndFactor = toCross.y / toEdgeEnd.y;
+    }
+    else if (toEdgeEnd.z != 0)
+    {
+        fromStartToEndFactor = toCross.z / toEdgeEnd.z;
+    }
+    else if (toEdgeEnd.w != 0)
+    {
+        fromStartToEndFactor = toCross.w / toEdgeEnd.w;
+    }
+    
+    if(fromStartToEndFactor >= 0.0 && fromStartToEndFactor <= 1.0)
+    {
+        // Intersection is valid
+        saveIntersection(id.x, crossing);
+    }
+}
