@@ -10,16 +10,6 @@ public class RotationTest : MonoBehaviour
 
     private Transform4 transform4;
 
-    private void CollectInput()
-    {
-        transform4.Rotation.Xy += Input.GetAxis("4D_xy") * Time.deltaTime;
-        transform4.Rotation.Xz += Input.GetAxis("4D_xz") * Time.deltaTime;
-        transform4.Rotation.Xw += Input.GetAxis("4D_xw") * Time.deltaTime;
-        transform4.Rotation.Yz += Input.GetAxis("4D_yz") * Time.deltaTime;
-        transform4.Rotation.Yw += Input.GetAxis("4D_yw") * Time.deltaTime;
-        transform4.Rotation.Zw += Input.GetAxis("4D_zw") * Time.deltaTime;
-        transform4.NormalizeRotation();
-    }
 
     void Start()
     {
@@ -28,8 +18,6 @@ public class RotationTest : MonoBehaviour
 
     void Update()
     {
-        CollectInput();
-
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Vector4 testPoint = new Vector4(2, 3, 4, 5);

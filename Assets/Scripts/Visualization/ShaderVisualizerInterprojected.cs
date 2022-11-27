@@ -58,28 +58,29 @@ public class ShaderVisualizerInterprojected : MonoBehaviour, IShaderVisualizer
         // Update position and rotation
         Transform4 transform4 = GetComponent<Transform4>();
 
+        throw new NotImplementedException("New rotation hasn't been implemented here");
         foreach (Material material in Materials)
         {
             material.SetVector("_Position", transform4.Position);
 
-            material.SetFloat("_RotationXy", transform4.Rotation.Xy);
-            material.SetFloat("_RotationXz", transform4.Rotation.Xz);
-            material.SetFloat("_RotationXw", transform4.Rotation.Xw);
-            material.SetFloat("_RotationYz", transform4.Rotation.Yz);
-            material.SetFloat("_RotationYw", transform4.Rotation.Yw);
-            material.SetFloat("_RotationZw", transform4.Rotation.Zw);
+            //material.SetFloat("_RotationXy", transform4.Rotation.Xy);
+            //material.SetFloat("_RotationXz", transform4.Rotation.Xz);
+            //material.SetFloat("_RotationXw", transform4.Rotation.Xw);
+            //material.SetFloat("_RotationYz", transform4.Rotation.Yz);
+            //material.SetFloat("_RotationYw", transform4.Rotation.Yw);
+            //material.SetFloat("_RotationZw", transform4.Rotation.Zw);
 
             Transform4 cameraTransform4 = Camera.main.GetComponent<Transform4>();
 
             material.SetVector("_CameraPosition", cameraTransform4.GlobalPosition);
 
             // TODO: camera global rotation
-            material.SetFloat("_CameraRotationXy", cameraTransform4.Rotation.Xy);
-            material.SetFloat("_CameraRotationXz", cameraTransform4.Rotation.Xz);
-            material.SetFloat("_CameraRotationXw", cameraTransform4.Rotation.Xw);
-            material.SetFloat("_CameraRotationYz", cameraTransform4.Rotation.Yz);
-            material.SetFloat("_CameraRotationYw", cameraTransform4.Rotation.Yw);
-            material.SetFloat("_CameraRotationZw", cameraTransform4.Rotation.Zw);
+            //material.SetFloat("_CameraRotationXy", cameraTransform4.Rotation.Xy);
+            //material.SetFloat("_CameraRotationXz", cameraTransform4.Rotation.Xz);
+            //material.SetFloat("_CameraRotationXw", cameraTransform4.Rotation.Xw);
+            //material.SetFloat("_CameraRotationYz", cameraTransform4.Rotation.Yz);
+            //material.SetFloat("_CameraRotationYw", cameraTransform4.Rotation.Yw);
+            //material.SetFloat("_CameraRotationZw", cameraTransform4.Rotation.Zw);
             material.SetVector("_CameraForward", cameraTransform4.Forward);
 
             material.SetFloat("_ViewportDistance", viewportDistance);
