@@ -6,7 +6,7 @@ using UnityEngine;
 public class Transform4 : MonoBehaviour
 {
     [SerializeField] Vector4 position;
-    [SerializeField] Vector6 initialRotationotation = new Vector6();
+    [SerializeField] Vector6 initialRotation = new Vector6();
 
     public Vector4 Position
     {
@@ -85,6 +85,6 @@ public class Transform4 : MonoBehaviour
 
     private void Awake()
     {
-        rotationState = new Rotation4d(initialRotationotation);
+        rotationState = new Rotation4d(initialRotation);
     }
 }
