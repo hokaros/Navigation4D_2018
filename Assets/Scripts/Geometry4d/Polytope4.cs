@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Linq;
 
 [RequireComponent(typeof(Transform4))]
+[ExecuteInEditMode]
 public class Polytope4 : MonoBehaviour
 {
     public Transform4 transform4 { get; private set; }

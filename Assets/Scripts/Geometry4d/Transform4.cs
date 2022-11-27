@@ -3,10 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class Transform4 : MonoBehaviour
 {
     [SerializeField] Vector4 position;
     [SerializeField] Vector6 initialRotation = new Vector6();
+    [SerializeField] bool updateRotationInPlayMode = false;
 
     public Vector4 Position
     {
@@ -78,9 +80,14 @@ public class Transform4 : MonoBehaviour
         );
     }
 
-    public void Update()
+    private void Update()
     {
-
+        if (!Application.isPlaying || updateRotationInPlayMode)
+        {
+            // Always update rotation to initialRotation if in Edit Mode
+            // Do this in Play Mode only if explicitly agreed
+            rotationState = new Rotation4d(initialRotation);
+        }
     }
 
     private void Awake()
