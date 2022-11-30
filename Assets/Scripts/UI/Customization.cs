@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-//using TMPro;
 
 public class Customization : MonoBehaviour
 {
     [SerializeField] Text title;
 
-    private GameObject activeGameObject;
+    [SerializeField] private GameObject activeGameObject;
     private Polytope4 activePolytope;
     private Transform4 activeTransform;
 
@@ -16,12 +15,15 @@ public class Customization : MonoBehaviour
     {
         activeGameObject = polytope;
         activePolytope = polytope.GetComponent<Polytope4>();
-        title.text = "Customize " + activePolytope.name;
+        title.text = activePolytope.name;
     }
 
     void Start()
     {
-        
+        if (activeGameObject != null)
+        {
+            SetPolytope(activeGameObject);
+        }
     }
 
     void Update()
