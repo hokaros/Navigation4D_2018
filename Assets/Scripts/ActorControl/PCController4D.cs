@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 
 class PCController4D : IInput4D
-{
+{ 
     public float GetXAxis() => Input.GetAxis("Horizontal");
     public float GetYAxis() => Input.GetAxis("Forward"); 
     public float GetZAxis() => Input.GetAxis("Vertical");
@@ -18,4 +18,11 @@ class PCController4D : IInput4D
     public float GetYZRotation() => Input.GetAxis("4D_yz");
     public float GetYWRotation() => Input.GetAxis("4D_yw");
     public float GetZWRotation() => Input.GetAxis("4D_zw");
+
+    public bool TriggerRaycast() => Input.GetMouseButtonDown(0);
+
+    public RaycastHit[] RaycastClick()
+    {
+        return Physics.RaycastAll(Camera.main.ScreenPointToRay(Input.mousePosition));
+    }
 }

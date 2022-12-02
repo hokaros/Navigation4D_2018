@@ -13,8 +13,7 @@ public class Customization : MonoBehaviour
 
     [SerializeField] private float toolInfluence;
 
-
-    [SerializeField] private GameObject activeGameObject;
+    [SerializeField] private Transform polytopesParent;
 
     [SerializeField] private Text xPosText;
     [SerializeField] private Text yPosText;
@@ -47,11 +46,14 @@ public class Customization : MonoBehaviour
 
     [SerializeField] private Text toolInfluenceText;
 
+    private GameObject activeGameObject;
     private Polytope4 activePolytope;
     private Transform4 activeTransform;
     private CustomizationAspect customizationAspect;
 
     private InputManager inputManager;
+
+    private List<GameObject> polytopes;
 
 
     private void EnableCustomization()
@@ -139,10 +141,21 @@ public class Customization : MonoBehaviour
     void Awake()
     {
         inputManager = FindObjectOfType<InputManager>();
+        polytopes = new List<GameObject>();
+
+        foreach(Transform polytope in polytopesParent)
+        {
+            polytopes.Add(polytope.gameObject);
+        }
+        if (polytopes.Count > 0)
+        {
+            activeGameObject = polytopes[0];
+        }
         if (activeGameObject != null)
         {
             SetPolytope(activeGameObject);
         }
+
     }
 
     public void OnPositionButtonClicked()
@@ -160,6 +173,21 @@ public class Customization : MonoBehaviour
     public void OnChangeInfluenceButtonClicked()
     {
         ChangeCustomizationAspect(CustomizationAspect.CHANGE_INFLUENCE);
+    }
+
+    public void ChangePolytope(int indexDiff)
+    {
+        if (polytopes.Count <= 0) return;
+
+        if (activeGameObject == null)
+        {
+            SetPolytope(polytopes[0]);
+        }
+        else
+        {
+            int currIndex = polytopes.IndexOf(activeGameObject);
+            SetPolytope(polytopes[(currIndex + polytopes.Count + indexDiff) % polytopes.Count]);
+        }
     }
 
     private void ChangeCustomizationAspect(CustomizationAspect aspect)

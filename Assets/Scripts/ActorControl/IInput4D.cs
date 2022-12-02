@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 interface IInput4D
 {
@@ -17,4 +18,8 @@ interface IInput4D
     float GetYZRotation();
     float GetYWRotation();
     float GetZWRotation();
+
+    bool TriggerRaycast();
+
+    RaycastHit[] RaycastClick();
 }

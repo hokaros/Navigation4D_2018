@@ -22,6 +22,9 @@ public class InputManager : MonoBehaviour {
 	public float GetYWRotation() { return input.GetYWRotation(); }
 	public float GetZWRotation() { return input.GetZWRotation(); }
 
+	public bool TriggerRaycast() { return input.TriggerRaycast(); }
+	public RaycastHit[] RaycastClick() { return input.RaycastClick(); }
+
 	public void DisableController()
     {
 		BasicController controller = GetComponent<BasicController>();
