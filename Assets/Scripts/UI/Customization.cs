@@ -234,21 +234,17 @@ public class Customization : MonoBehaviour
         {
             if (activeTransform != null)
             {
-                switch (customizationAspect)
+                if(customizationAspect==CustomizationAspect.POSITION
+                    ||customizationAspect==CustomizationAspect.ROTATION)
                 {
-                    case CustomizationAspect.POSITION:
-                        UpdatePosition();
-                        UpdatePositionLabels();
-                        break;
-                    case CustomizationAspect.ROTATION:
-                        UpdateRotation();
-                        UpdateRotationMatrixLabels();
-                        break;
-                    case CustomizationAspect.CHANGE_INFLUENCE:
-                        ChangeToolInfluence();
-                        break;
-                    default:
-                        break;
+                    UpdatePosition();
+                    UpdatePositionLabels();
+                    UpdateRotation();
+                    UpdateRotationMatrixLabels();
+                }
+                else if(customizationAspect==CustomizationAspect.CHANGE_INFLUENCE)
+                {
+                    ChangeToolInfluence();
                 }
             }
         }
