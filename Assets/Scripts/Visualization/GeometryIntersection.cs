@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class GeometryIntersection
+public static class GeometryIntersection
 {
     /// <summary>
     /// Calculates the intersection of a given polytope with the camera's hyperplane of view
@@ -56,7 +56,7 @@ public class GeometryIntersection
     {
         List<VertexEdge4> intersectionEdges = new List<VertexEdge4>();
 
-        Dictionary<int, List<Vector4>> faceIntersections = FacesIntersections(polytope, hyperplane);
+        Dictionary<int, List<Vector4>> faceIntersections = polytope.FacesIntersections(hyperplane);
 
         foreach(var entry in faceIntersections)
         {
@@ -78,95 +78,6 @@ public class GeometryIntersection
         }
 
         return EdgeMesh4.FromVertexEdges(intersectionEdges);
-    }
-
-    /// <summary>
-    /// Calculates the intersection between an edge and a hyperplane
-    /// </summary>
-    public static Vector4? EdgeIntersection(Vector4 edgeStart, Vector4 edgeEnd, Hyperplane4 hyperplane)
-    {
-        Vector4 edgeDirection = edgeEnd - edgeStart;
-        Line4 edgeLine = new Line4(edgeStart, edgeDirection);
-
-        Vector4 crossingPoint;
-        try
-        {
-            crossingPoint = hyperplane.CrossingPoint(edgeLine);
-        }
-        catch(DivideByZeroException)
-        {
-            return null; // No intersection (the edge is parallel to the hyperplane)
-        }
-
-        // Check if the crossingPoint is between the bounds of the edge
-        Vector4 toCross = crossingPoint - edgeStart;
-        Vector4 toEdgeEnd = edgeEnd - edgeStart;
-
-        float fromStartToEndFactor = Mathf.Infinity;
-        if(toEdgeEnd.x != 0)
-        {
-            fromStartToEndFactor = toCross.x / toEdgeEnd.x;
-        }
-        else if(toEdgeEnd.y != 0)
-        {
-            fromStartToEndFactor = toCross.y / toEdgeEnd.y;
-        }
-        else if (toEdgeEnd.z != 0)
-        {
-            fromStartToEndFactor = toCross.z / toEdgeEnd.z;
-        }
-        else if (toEdgeEnd.w != 0)
-        {
-            fromStartToEndFactor = toCross.w / toEdgeEnd.w;
-        }
-
-        if (fromStartToEndFactor >= 0f && fromStartToEndFactor <= 1f)
-            return crossingPoint; // Between the edge bounds
-        return null; // Crossing with the edge line, but outside of the edge
-    }
-
-    /// <summary>
-    /// Intersects hyperplane with faces of a polytope
-    /// </summary>
-    /// <param name="polytope"></param>
-    /// <param name="hyperplane"></param>
-    /// <returns>A dictionary where: Key = index of the face; Value = intersection points with the edges of the face. </returns>
-    private static Dictionary<int, List<Vector4>> FacesIntersections(Polytope4 polytope, Hyperplane4 hyperplane)
-    {
-        List<Vector4> vertices = polytope.VerticesWorld;
-
-        Dictionary<int, List<Vector4>> faceIntersections = new Dictionary<int, List<Vector4>>(); // faceIndex -> intersection points
-
-        int edgeIndex = -1;
-        foreach (Edge edge in polytope.Edges)
-        {
-            int edgeStartIndex = edge.startId;
-            int edgeEndIndex = edge.endId;
-            edgeIndex++;
-
-            Vector4 edgeStart = vertices[edgeStartIndex];
-            Vector4 edgeEnd = vertices[edgeEndIndex];
-
-            Vector4? edgeIntersection = EdgeIntersection(edgeStart, edgeEnd, hyperplane);
-            if (!edgeIntersection.HasValue)
-                continue; // no intersection
-
-            // Save the face which the edge belongs to, clone record for every face
-            foreach (int faceIndex in polytope.GetEdgeFaces(edgeIndex))
-            {
-                // Add the intersection to the face's record
-                if (faceIntersections.ContainsKey(faceIndex))
-                {
-                    faceIntersections[faceIndex].Add(edgeIntersection.Value);
-                }
-                else
-                {
-                    faceIntersections.Add(faceIndex, new List<Vector4> { edgeIntersection.Value });
-                }
-            }
-        }
-
-        return faceIntersections;
     }
 
     private static List<Vector4> EliminateDuplicates(List<Vector4> points)
