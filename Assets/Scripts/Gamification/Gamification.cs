@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(Timer))]
 public class Gamification : MonoBehaviour {
+
+	[SerializeField] private int totalTargets=10;
 
 	[SerializeField] private Transform4 player;
 	[SerializeField] private Transform4 target;
@@ -18,6 +21,13 @@ public class Gamification : MonoBehaviour {
 	[SerializeField] private Text yTargetPosText;
 	[SerializeField] private Text zTargetPosText;
 	[SerializeField] private Text wTargetPosText;
+
+	[SerializeField] private Text timerText;
+	[SerializeField] private Text targetCountText;
+
+	private Timer timer;
+	private int collectedTargets = 0;
+	private bool gameIsOn = true;
 
 
 	private void UpdatePlayerPositionLabels()
@@ -41,17 +51,48 @@ public class Gamification : MonoBehaviour {
 		Vector4 newTargetPos = player.Position + new Vector4(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized * targetSpawnRadius;
 		target.Position = newTargetPos;
 		UpdateTargetPositionLabels();
+		collectedTargets++;
+		targetCountText.text = $"{collectedTargets}/{totalTargets}";
+		if(collectedTargets >= totalTargets)
+        {
+			EndGame();
+        }
+        else
+        {
+			timer.Resume();
+		}	
     }
 
-	void Start () {
-		
+	private void EndGame()
+    {
+		timer.Stop();
+		targetCountText.text = "Result:";
+		gameIsOn = false;
+	}
+
+	private void RestartGame()
+    {
+		gameIsOn = true;
+		collectedTargets = 0;
+		timer.Reset();
+		timer.Start();
+    }
+
+	void Awake () {
+		timer = GetComponent<Timer>();
 	}
 	
 	void Update () {
 		UpdatePlayerPositionLabels();
-        if (Input.GetKeyDown(KeyCode.Y))
+
+        if (gameIsOn)
         {
-			NextTarget();
-        }
+			timerText.text = timer.Value.ToString("F2");
+			if (Input.GetKeyDown(KeyCode.Y))
+			{
+				NextTarget();
+			}
+		}
+        
 	}
 }
