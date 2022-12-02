@@ -18,6 +18,8 @@ public class Rotation4d
 
 	private Matrix4x4 rotationMatrix;
 
+	public Matrix4x4 RotationMatrix { get => rotationMatrix; }
+
 
 	public Rotation4d(Vector6 individualRotations)
     {

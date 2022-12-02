@@ -28,6 +28,23 @@ public class Customization : MonoBehaviour
     [SerializeField] private Text ywRotText;
     [SerializeField] private Text zwRotText;
 
+    [SerializeField] private Text xxRotMatrixText;
+    [SerializeField] private Text xyRotMatrixText;
+    [SerializeField] private Text xzRotMatrixText;
+    [SerializeField] private Text xwRotMatrixText;
+    [SerializeField] private Text yxRotMatrixText;
+    [SerializeField] private Text yyRotMatrixText;
+    [SerializeField] private Text yzRotMatrixText;
+    [SerializeField] private Text ywRotMatrixText;
+    [SerializeField] private Text zxRotMatrixText;
+    [SerializeField] private Text zyRotMatrixText;
+    [SerializeField] private Text zzRotMatrixText;
+    [SerializeField] private Text zwRotMatrixText;
+    [SerializeField] private Text wxRotMatrixText;
+    [SerializeField] private Text wyRotMatrixText;
+    [SerializeField] private Text wzRotMatrixText;
+    [SerializeField] private Text wwRotMatrixText;
+
     [SerializeField] private Text toolInfluenceText;
 
     private Polytope4 activePolytope;
@@ -64,21 +81,45 @@ public class Customization : MonoBehaviour
     private void UpdatePositionLabels()
     {
         Vector4 position = activeTransform.Position;
-        xPosText.text = position.x.ToString();
-        yPosText.text = position.y.ToString();
-        zPosText.text = position.z.ToString();
-        wPosText.text = position.w.ToString();
+        xPosText.text = position.x.ToString("F2");
+        yPosText.text = position.y.ToString("F2");
+        zPosText.text = position.z.ToString("F2");
+        wPosText.text = position.w.ToString("F2");
     }
 
     private void UpdateRotationLabels()
     {
         Vector6 rotation = activeTransform.Rotation;
-        xyRotText.text = rotation.Xy.ToString();
-        xzRotText.text = rotation.Xz.ToString();
-        xwRotText.text = rotation.Xw.ToString();
-        yzRotText.text = rotation.Yz.ToString();
-        ywRotText.text = rotation.Yw.ToString();
-        zwRotText.text = rotation.Zw.ToString();
+        xyRotText.text = rotation.Xy.ToString("F2");
+        xzRotText.text = rotation.Xz.ToString("F2");
+        xwRotText.text = rotation.Xw.ToString("F2");
+        yzRotText.text = rotation.Yz.ToString("F2");
+        ywRotText.text = rotation.Yw.ToString("F2");
+        zwRotText.text = rotation.Zw.ToString("F2");
+    }
+
+    private void UpdateRotationMatrixLabels()
+    {
+        Matrix4x4 rotation = activeTransform.RotationMatrix;
+        xxRotMatrixText.text = rotation.m00.ToString("F2");
+        xyRotMatrixText.text = rotation.m01.ToString("F2");
+        xzRotMatrixText.text = rotation.m02.ToString("F2");
+        xwRotMatrixText.text = rotation.m03.ToString("F2");
+
+        yxRotMatrixText.text = rotation.m10.ToString("F2");
+        yyRotMatrixText.text = rotation.m11.ToString("F2");
+        yzRotMatrixText.text = rotation.m12.ToString("F2");
+        ywRotMatrixText.text = rotation.m13.ToString("F2");
+
+        zxRotMatrixText.text = rotation.m20.ToString("F2");
+        zyRotMatrixText.text = rotation.m21.ToString("F2");
+        zzRotMatrixText.text = rotation.m22.ToString("F2");
+        zwRotMatrixText.text = rotation.m23.ToString("F2");
+
+        wxRotMatrixText.text = rotation.m30.ToString("F2");
+        wyRotMatrixText.text = rotation.m31.ToString("F2");
+        wzRotMatrixText.text = rotation.m32.ToString("F2");
+        wwRotMatrixText.text = rotation.m33.ToString("F2");
     }
 
 
@@ -91,6 +132,7 @@ public class Customization : MonoBehaviour
         title.text = activePolytope.name;
         UpdatePositionLabels();
         UpdateRotationLabels();
+        UpdateRotationMatrixLabels();
         ChangeToolInfluence();
     }
 
@@ -138,7 +180,7 @@ public class Customization : MonoBehaviour
     private void ChangeToolInfluence()
     {
         toolInfluence += inputManager.GetXAxis() * Time.deltaTime * toolInfluence;
-        toolInfluenceText.text = toolInfluence.ToString();
+        toolInfluenceText.text = toolInfluence.ToString("F2");
     }
 
     private void UpdatePosition()
@@ -167,7 +209,7 @@ public class Customization : MonoBehaviour
                         break;
                     case CustomizationAspect.ROTATION:
                         UpdateRotation();
-                        UpdateRotationLabels();
+                        UpdateRotationMatrixLabels();
                         break;
                     case CustomizationAspect.CHANGE_INFLUENCE:
                         ChangeToolInfluence();

@@ -20,6 +20,9 @@ public class Transform4 : MonoBehaviour
     {
         get => initialRotation;
     }
+
+    public Matrix4x4 RotationMatrix { get => rotationState.RotationMatrix; }
+
     public Vector4 GlobalPosition => PointToWorld(Vector4.zero);
     //public Vector4 Forward { get { return Rotation4d.GetRotatedPoint(Vectors4.Forward, rotation).normalized; } }
     public Vector4 Forward => (PointToWorld(Vectors4.Forward) - GlobalPosition);
