@@ -10,6 +10,7 @@ public class GenerationUI : MonoBehaviour
     private void OnPolytopeGenerated(GameObject polytope)
     {
         polytope.transform.SetParent(customizationScript.polytopesParent);
+        customizationScript.AddPolytope(polytope);
         customizationScript.SetPolytope(polytope);
     }
 

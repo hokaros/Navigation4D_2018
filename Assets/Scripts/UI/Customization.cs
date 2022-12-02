@@ -175,6 +175,11 @@ public class Customization : MonoBehaviour
         ChangeCustomizationAspect(CustomizationAspect.CHANGE_INFLUENCE);
     }
 
+    public void AddPolytope(GameObject polytope)
+    {
+        polytopes.Add(polytope);
+    }
+
     public void ChangePolytope(int indexDiff)
     {
         if (polytopes.Count <= 0) return;
