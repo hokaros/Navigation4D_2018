@@ -15,6 +15,11 @@ public class Transform4 : MonoBehaviour
         get => position;
         set => position = value;
     }
+
+    public Vector6 Rotation
+    {
+        get => initialRotation;
+    }
     public Vector4 GlobalPosition => PointToWorld(Vector4.zero);
     //public Vector4 Forward { get { return Rotation4d.GetRotatedPoint(Vectors4.Forward, rotation).normalized; } }
     public Vector4 Forward => (PointToWorld(Vectors4.Forward) - GlobalPosition);

@@ -21,4 +21,22 @@ public class InputManager : MonoBehaviour {
 	public float GetYZRotation() { return input.GetYZRotation(); }
 	public float GetYWRotation() { return input.GetYWRotation(); }
 	public float GetZWRotation() { return input.GetZWRotation(); }
+
+	public void DisableController()
+    {
+		BasicController controller = GetComponent<BasicController>();
+        if (controller != null)
+        {
+			controller.enabled = false;
+        }
+    }
+
+	public void EnableController()
+	{
+		BasicController controller = GetComponent<BasicController>();
+		if (controller != null)
+		{
+			controller.enabled = true;
+		}
+	}
 }
