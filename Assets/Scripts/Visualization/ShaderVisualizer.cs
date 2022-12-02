@@ -15,8 +15,8 @@ public class ShaderVisualizer : MonoBehaviour
 {
     public enum VisualizationType
     {
+        Intersectioned,
         Interprojected,
-        Intersectioned
     }
 
     [SerializeField] float viewportDistance = 10;

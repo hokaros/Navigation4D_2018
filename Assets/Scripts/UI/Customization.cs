@@ -13,7 +13,7 @@ public class Customization : MonoBehaviour
 
     [SerializeField] private float toolInfluence;
 
-    [SerializeField] private Transform polytopesParent;
+    public Transform polytopesParent;
 
     [SerializeField] private Text xPosText;
     [SerializeField] private Text yPosText;

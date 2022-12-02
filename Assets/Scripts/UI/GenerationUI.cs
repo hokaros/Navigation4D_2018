@@ -5,26 +5,33 @@ using UnityEngine;
 public class GenerationUI : MonoBehaviour
 {
     [SerializeField] private PolytopeReader polytopeReader;
-    private SelectionMenu selectionMenu;
+    private Customization customizationScript;
+
+    private void OnPolytopeGenerated(GameObject polytope)
+    {
+        polytope.transform.SetParent(customizationScript.polytopesParent);
+        customizationScript.SetPolytope(polytope);
+    }
+
     public void SimplexGenerateButtonClick()
     {
         GameObject polytope = polytopeReader.GenerateSimplex();
-        selectionMenu.AddSelectable(polytope);
+        OnPolytopeGenerated(polytope);
     }
 
     public void TesseractGenerateButtonClick()
     {
         GameObject polytope = polytopeReader.GenerateTesseract();
-        selectionMenu.AddSelectable(polytope);
+        OnPolytopeGenerated(polytope);
     }
 
     public void DodecaplexGenerateButtonClick()
     {
         GameObject polytope = polytopeReader.GenerateDodecaplex();
-        selectionMenu.AddSelectable(polytope);
+        OnPolytopeGenerated(polytope);
     }
     private void Awake()
     {
-        selectionMenu = FindObjectOfType<SelectionMenu>();   
+        customizationScript = FindObjectOfType<Customization>();
     }
 }
