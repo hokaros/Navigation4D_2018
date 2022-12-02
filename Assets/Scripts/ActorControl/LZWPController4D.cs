@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 class LZWPController4D : IInput4D
 {
@@ -65,5 +66,23 @@ class LZWPController4D : IInput4D
         float negative = btnNegative.isActive ? 1f : 0f;
 
         return positive - negative;
+    }
+
+    public void RaycastClick()
+    {
+        // TODO: implement
+    }
+
+    public bool TriggerRaycast()
+    {
+        // TODO: implement
+        return false;
+    }
+
+    RaycastHit[] IInput4D.RaycastClick()
+    {
+        Vector3 origin = Vector3.forward; // retrieve flystick position
+        // TODO: implement
+        return Physics.RaycastAll(Camera.main.ScreenPointToRay(origin));
     }
 }

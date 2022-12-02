@@ -8,6 +8,7 @@ public class PolytopeReader : MonoBehaviour
 {
     [SerializeField] Material faces4D, wideEdges4D, edges4D;
     [SerializeField] Material faces3D, wideEdges3D, edges3D;
+    [SerializeField] Transform4 spawn;
     public GameObject GenerateFromFile(string path)
     {
         string fileContent = ReadFile(path);
@@ -43,14 +44,15 @@ public class PolytopeReader : MonoBehaviour
             }
             faces.Add(faceIndices);
         }
-        return GeneratePolytope(vertices, edges, faces, name);
+        return GeneratePolytope(vertices, edges, faces, spawn.Position, name);
     }
 
-    public GameObject GeneratePolytope(List<Vector4> vertices, List<Edge>edges, List<List<int>>faces, string name="new polytope")
+    public GameObject GeneratePolytope(List<Vector4> vertices, List<Edge>edges, List<List<int>>faces, Vector4 initialPos, string name="new polytope")
     {
         GameObject polytope = new GameObject(name);
         polytope.AddComponent<Transform4>();
-        polytope.AddComponent<GizmosMeshVisualizer>();
+        polytope.GetComponent<Transform4>().Position = initialPos;
+        //polytope.AddComponent<GizmosMeshVisualizer>();
         polytope.AddComponent<MeshRenderer>();
         polytope.AddComponent<MeshFilter>();
 
@@ -61,12 +63,12 @@ public class PolytopeReader : MonoBehaviour
         p4.Initialize(vertices, edges, faces);
         polytope.AddComponent<ShaderVisualizer>();
 
-        ShaderVisualizerInterprojected interprojected = polytope.GetComponent<ShaderVisualizerInterprojected>();
+        //ShaderVisualizerInterprojected interprojected = polytope.GetComponent<ShaderVisualizerInterprojected>();
         ShaderVisualizerIntersectioned intersectioned = polytope.GetComponent<ShaderVisualizerIntersectioned>();
 
-        interprojected.faceMaterial = faces4D;
-        interprojected.wideEdgesMaterial = wideEdges4D;
-        interprojected.lineEdgesMaterial = edges4D;
+        //interprojected.faceMaterial = faces4D;
+        //interprojected.wideEdgesMaterial = wideEdges4D;
+        //interprojected.lineEdgesMaterial = edges4D;
 
         intersectioned.faceMaterial = faces3D;
         intersectioned.wideEdgesMaterial = wideEdges3D;
