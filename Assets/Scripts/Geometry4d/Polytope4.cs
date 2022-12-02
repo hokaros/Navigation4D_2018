@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
 
 [RequireComponent(typeof(Transform4))]
 [ExecuteInEditMode]
@@ -99,6 +100,48 @@ public class Polytope4 : MonoBehaviour
         return result;
     }
 
+    /// <summary>
+    /// Intersects hyperplane with faces of the polytope
+    /// </summary>
+    /// <param name="hyperplane"></param>
+    /// <returns>A dictionary where: Key = index of the face; Value = intersection points with the edges of the face. </returns>
+    public virtual Dictionary<int, List<Vector4>> FacesIntersections(Hyperplane4 hyperplane)
+    {
+        List<Vector4> vertices = VerticesWorld;
+
+        Dictionary<int, List<Vector4>> faceIntersections = new Dictionary<int, List<Vector4>>(); // faceIndex -> intersection points
+
+        int edgeIndex = -1;
+        foreach (Edge edge in Edges)
+        {
+            int edgeStartIndex = edge.startId;
+            int edgeEndIndex = edge.endId;
+            edgeIndex++;
+
+            Vector4 edgeStart = vertices[edgeStartIndex];
+            Vector4 edgeEnd = vertices[edgeEndIndex];
+
+            Vector4? edgeIntersection = hyperplane.EdgeIntersection(edgeStart, edgeEnd);
+            if (!edgeIntersection.HasValue)
+                continue; // no intersection
+
+            // Save the face which the edge belongs to, clone record for every face
+            foreach (int faceIndex in GetEdgeFaces(edgeIndex))
+            {
+                // Add the intersection to the face's record
+                if (faceIntersections.ContainsKey(faceIndex))
+                {
+                    faceIntersections[faceIndex].Add(edgeIntersection.Value);
+                }
+                else
+                {
+                    faceIntersections.Add(faceIndex, new List<Vector4> { edgeIntersection.Value });
+                }
+            }
+        }
+
+        return faceIntersections;
+    }
 
     /// <summary>
     /// Returns faces which the edge belongs to.

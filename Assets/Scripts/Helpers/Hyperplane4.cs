@@ -12,6 +12,12 @@ public struct Hyperplane4
     /// </summary>
     private float a, b, c, d, e;
 
+    public float A => a;
+    public float B => b;
+    public float C => c;
+    public float D => d;
+    public float E => e;
+
     public void Update(Vector4 point, Vector4 normalVector)
     {
         a = normalVector.x;
@@ -74,6 +80,51 @@ public Vector4 CrossingPoint(Line4 line)
     public bool Contains(Vector4 point)
     {
         return Mathf.Abs(Vector4.Dot(point, new Vector4(a, b, c, d)) + e) < Mathf.Epsilon;
+    }
+
+    /// <summary>
+    /// Calculates the intersection between an edge and a hyperplane
+    /// </summary>
+    public Vector4? EdgeIntersection(Vector4 edgeStart, Vector4 edgeEnd)
+    {
+        Vector4 edgeDirection = edgeEnd - edgeStart;
+        Line4 edgeLine = new Line4(edgeStart, edgeDirection);
+
+        Vector4 crossingPoint;
+        try
+        {
+            crossingPoint = CrossingPoint(edgeLine);
+        }
+        catch (DivideByZeroException)
+        {
+            return null; // No intersection (the edge is parallel to the hyperplane)
+        }
+
+        // Check if the crossingPoint is between the bounds of the edge
+        Vector4 toCross = crossingPoint - edgeStart;
+        Vector4 toEdgeEnd = edgeEnd - edgeStart;
+
+        float fromStartToEndFactor = Mathf.Infinity;
+        if (toEdgeEnd.x != 0)
+        {
+            fromStartToEndFactor = toCross.x / toEdgeEnd.x;
+        }
+        else if (toEdgeEnd.y != 0)
+        {
+            fromStartToEndFactor = toCross.y / toEdgeEnd.y;
+        }
+        else if (toEdgeEnd.z != 0)
+        {
+            fromStartToEndFactor = toCross.z / toEdgeEnd.z;
+        }
+        else if (toEdgeEnd.w != 0)
+        {
+            fromStartToEndFactor = toCross.w / toEdgeEnd.w;
+        }
+
+        if (fromStartToEndFactor >= 0f && fromStartToEndFactor <= 1f)
+            return crossingPoint; // Between the edge bounds
+        return null; // Crossing with the edge line, but outside of the edge
     }
 
     public override string ToString()
