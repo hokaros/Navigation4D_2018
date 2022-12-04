@@ -5,10 +5,19 @@ using System;
 
 public class HyperCuboid : Polytope4 
 {
-	[SerializeField] float sizeX = 2f;
-	[SerializeField] float sizeY = 2f;
-	[SerializeField] float sizeZ = 2f;
-	[SerializeField] float sizeW = 2f;
+	public float sizeX = 2f;
+	public float sizeY = 2f;
+	public float sizeZ = 2f;
+	public float sizeW = 2f;
+
+	public void SetSize(Vector4 size)
+    {
+		sizeX = size.x;
+		sizeY = size.y;
+		sizeZ = size.z;
+		sizeW = size.w;
+    }
+
 	public override List<Vector4> StartVertices
 		=> new List<Vector4>
 		{
