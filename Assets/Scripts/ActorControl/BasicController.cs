@@ -8,12 +8,14 @@ public class BasicController : MonoBehaviour
     [SerializeField] private float rotationSpeed = 1.0f;
     [SerializeField] private float movementSpeed = 1.0f;
     [SerializeField] private float collisionDistance = 1f;
+    [SerializeField] private bool collidingHead = true;
+    [SerializeField] private bool collidingFeet = true;
 
     private Transform4 transform4;
     private Vector4 movement;
     private InputManager inputManager;
 
-   
+    private Camera[] cameras;
 
     private void UpdateRotation()
     {
@@ -44,10 +46,28 @@ public class BasicController : MonoBehaviour
 
     private bool CanMove(Vector3 direction)
     {
-        bool collision = Physics.Raycast(transform.position, direction.normalized, collisionDistance);
-        Debug.DrawRay(transform.position, direction.normalized, Color.red, collisionDistance);
 
-        return !collision;
+        if (collidingFeet)
+        {
+            Vector3 feetPosition = LzwpOrigin.GetPosition();
+
+            bool collision = Physics.Raycast(feetPosition, direction, collisionDistance);
+            Debug.DrawRay(feetPosition, direction.normalized, Color.red, collisionDistance);
+            if (collision)
+                return false;
+        }
+
+        if (collidingHead)
+        {
+            Vector3 headPosition = Lzwp.display.pointsOfView[0].position;
+
+            bool collision = Physics.Raycast(headPosition, direction, collisionDistance);
+            Debug.DrawRay(headPosition, direction.normalized, Color.red, collisionDistance);
+            if (collision)
+                return false;
+        }
+
+        return true;
     }
 
     private void Awake()
@@ -58,7 +78,7 @@ public class BasicController : MonoBehaviour
 
     void Start()
     {
-        
+        cameras = FindObjectsOfType<Camera>();
     }
 
     void Update()
