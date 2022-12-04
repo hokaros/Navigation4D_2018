@@ -25,9 +25,11 @@ public class Gamification : MonoBehaviour {
 	[SerializeField] private Text timerText;
 	[SerializeField] private Text targetCountText;
 
+	[SerializeField] private GameObject startButton;
+
 	private Timer timer;
 	private int collectedTargets = 0;
-	private bool gameIsOn = true;
+	private bool gameIsOn = false;
 
 
 	private void UpdatePlayerPositionLabels()
@@ -67,12 +69,14 @@ public class Gamification : MonoBehaviour {
     {
 		timer.Stop();
 		targetCountText.text = "Result:";
+		startButton.SetActive(true);
 		gameIsOn = false;
 	}
 
-	private void RestartGame()
+	private void StartGame()
     {
 		gameIsOn = true;
+		startButton.SetActive(false);
 		collectedTargets = 0;
 		timer.Reset();
 		timer.Start();
