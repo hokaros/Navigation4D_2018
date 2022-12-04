@@ -172,7 +172,14 @@ public class Customization : MonoBehaviour
 
     public void OnChangeInfluenceButtonClicked()
     {
-        ChangeCustomizationAspect(CustomizationAspect.CHANGE_INFLUENCE);
+        if (customizationAspect == CustomizationAspect.CHANGE_INFLUENCE)
+        {
+            ChangeCustomizationAspect(CustomizationAspect.POSITION);
+        }
+        else
+        {
+            ChangeCustomizationAspect(CustomizationAspect.CHANGE_INFLUENCE);
+        }
     }
 
     public void AddPolytope(GameObject polytope)

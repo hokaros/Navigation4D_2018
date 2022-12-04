@@ -28,30 +28,30 @@ public class Orthoplex : Polytope4 {
 		get
 		{
 			List<Edge> edges = new List<Edge>();
-			edges.Add(new Edge(0, 1));
 			edges.Add(new Edge(0, 2));
 			edges.Add(new Edge(0, 3));
 			edges.Add(new Edge(0, 4));
 			edges.Add(new Edge(0, 5));
 			edges.Add(new Edge(0, 6));
+			edges.Add(new Edge(0, 7));
 			edges.Add(new Edge(1, 2));
 			edges.Add(new Edge(1, 3));
 			edges.Add(new Edge(1, 4));
 			edges.Add(new Edge(1, 5));
+			edges.Add(new Edge(1, 6));
 			edges.Add(new Edge(1, 7));
-			edges.Add(new Edge(2, 3));
 			edges.Add(new Edge(2, 4));
+			edges.Add(new Edge(2, 5));
 			edges.Add(new Edge(2, 6));
 			edges.Add(new Edge(2, 7));
+			edges.Add(new Edge(3, 4));
 			edges.Add(new Edge(3, 5));
 			edges.Add(new Edge(3, 6));
 			edges.Add(new Edge(3, 7));
-			edges.Add(new Edge(4, 5));
 			edges.Add(new Edge(4, 6));
 			edges.Add(new Edge(4, 7));
 			edges.Add(new Edge(5, 6));
 			edges.Add(new Edge(5, 7));
-			edges.Add(new Edge(6, 7));
 
 			return edges;
 		}

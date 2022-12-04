@@ -20,6 +20,24 @@ public class GenerationUI : MonoBehaviour
         OnPolytopeGenerated(polytope);
     }
 
+    public void OrthoplexGenerateButtonClick()
+    {
+        GameObject polytope = polytopeReader.GenerateOrthoplex();
+        OnPolytopeGenerated(polytope);
+    }
+
+    public void OctaplexGenerateButtonClick()
+    {
+        GameObject polytope = polytopeReader.GenerateOctaplex();
+        OnPolytopeGenerated(polytope);
+    }
+
+    public void TetraplexGenerateButtonClick()
+    {
+        GameObject polytope = polytopeReader.GenerateTetraplex();
+        OnPolytopeGenerated(polytope);
+    }
+
     public void TesseractGenerateButtonClick()
     {
         GameObject polytope = polytopeReader.GenerateTesseract();

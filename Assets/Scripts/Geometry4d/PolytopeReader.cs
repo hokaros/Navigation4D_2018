@@ -89,6 +89,16 @@ public class PolytopeReader : MonoBehaviour
         return GenerateFromFile("assets/polytopes/simplex.txt");
     }
 
+    public GameObject GenerateOrthoplex()
+    {
+        return GenerateFromFile("assets/polytopes/orthoplex.txt");
+    }
+
+    public GameObject GenerateOctaplex()
+    {
+        return GenerateFromFile("assets/polytopes/octaplex.txt");
+    }
+
     public GameObject GenerateTesseract()
     {
         return GenerateFromFile("assets/polytopes/tesseract.txt");
@@ -97,6 +107,11 @@ public class PolytopeReader : MonoBehaviour
     public GameObject GenerateDodecaplex()
     {
         return GenerateFromFile("assets/polytopes/dodecaplex.txt");
+    }
+
+    public GameObject GenerateTetraplex()
+    {
+        return GenerateFromFile("assets/polytopes/tetraplex.txt");
     }
 
     void Start()
