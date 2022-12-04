@@ -19,9 +19,8 @@ public class ShaderVisualizer : MonoBehaviour
         Interprojected,
     }
 
-    [SerializeField] float viewportDistance = 10;
     [SerializeField] float edgeWidth = 0.85f;
-    [SerializeField] VisualizationType visualizationType;
+    [SerializeField] VisualizationType visualizationType = VisualizationType.Intersectioned;
 
     IShaderVisualizer visualizer;
 
