@@ -7,6 +7,7 @@ public class BasicController : MonoBehaviour
 {
     [SerializeField] private float rotationSpeed = 1.0f;
     [SerializeField] private float movementSpeed = 1.0f;
+    [SerializeField] private float collisionDistance = 1f;
 
     private Transform4 transform4;
     private Vector4 movement;
@@ -33,7 +34,20 @@ public class BasicController : MonoBehaviour
         movement += transform4.WPositive * inputManager.GetWAxis(); // Input.GetAxis("4D_W");
         movement *= Time.deltaTime;
         movement *= movementSpeed;
-        transform4.Position += movement;
+
+        Vector3 movement3 = new Vector3(inputManager.GetXAxis(), inputManager.GetYAxis(), inputManager.GetZAxis());
+        if (CanMove(movement3))
+        {
+            transform4.Position += movement;
+        }
+    }
+
+    private bool CanMove(Vector3 direction)
+    {
+        bool collision = Physics.Raycast(transform.position, direction.normalized, collisionDistance);
+        Debug.DrawRay(transform.position, direction.normalized, Color.red, collisionDistance);
+
+        return !collision;
     }
 
     private void Awake()

@@ -20,7 +20,7 @@ public class ShaderVisualizerIntersectioned : MonoBehaviour, IShaderVisualizer
 
     public Material[] Materials => new Material[] { faceMaterial, lineEdgesMaterial, wideEdgesMaterial };
 
-    public Mesh InitializeMesh(float edgeWidth)
+    public Mesh InitializeMesh(float edgeWidth, out Mesh boundingSubmesh)
     {
         Polytope4 polytope4 = GetComponent<Polytope4>();
 
@@ -46,6 +46,12 @@ public class ShaderVisualizerIntersectioned : MonoBehaviour, IShaderVisualizer
         MeshCalculations.InitializeSolidSubmesh(mesh, midFaceTriangles, 2);
 
         this.mesh = mesh;
+
+        // Separate the bounding mesh
+        boundingSubmesh = new Mesh();
+        boundingSubmesh.vertices = vertices.Select(v => new Vector3(v.x, v.y, v.z)).ToArray();
+        boundingSubmesh.SetTriangles(intersection.GetTriangles(), 0);
+
         return mesh;
     }
 
