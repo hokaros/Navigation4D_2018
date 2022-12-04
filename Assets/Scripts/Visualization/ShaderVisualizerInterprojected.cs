@@ -87,7 +87,7 @@ public class ShaderVisualizerInterprojected : MonoBehaviour, IShaderVisualizer
         }
     }
 
-    public Mesh InitializeMesh(float edgeWidth)
+    public Mesh InitializeMesh(float edgeWidth, out Mesh boundingSubmesh)
     {
         throw new NotImplementedException();
         //Polytope4 polytope = GetComponent<Polytope4>();

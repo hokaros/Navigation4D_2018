@@ -17,7 +17,7 @@ public interface IShaderVisualizer
     bool IsMeshDynamic { get; }
     Bounds MeshBounds { get; }
     Material[] Materials { get; }
-    Mesh InitializeMesh(float edgeWidth);
+    Mesh InitializeMesh(float edgeWidth, out Mesh boundingSubmesh);
     void UpdateMaterialProperties();
 
 }

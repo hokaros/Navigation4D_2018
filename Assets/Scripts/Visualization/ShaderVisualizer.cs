@@ -23,6 +23,7 @@ public class ShaderVisualizer : MonoBehaviour
     [SerializeField] VisualizationType visualizationType = VisualizationType.Intersectioned;
 
     IShaderVisualizer visualizer;
+    MeshCollider collider;
 
     public void UpdateFaceOpacity(float opacity)
     {
@@ -36,13 +37,24 @@ public class ShaderVisualizer : MonoBehaviour
     }
 
 
+    private void UpdateMesh()
+    {
+        Mesh boundingSubmesh;
+        GetComponent<MeshFilter>().mesh = visualizer.InitializeMesh(edgeWidth, out boundingSubmesh);
+
+        if (collider != null)
+        {
+            collider.sharedMesh = boundingSubmesh;
+        }
+    }
+
     private void Update()
     {
         visualizer.UpdateTransform(transform);
 
         if (visualizer.IsMeshDynamic)
         {
-            GetComponent<MeshFilter>().mesh = visualizer.InitializeMesh(edgeWidth);
+            UpdateMesh();
         }
         visualizer.UpdateMaterialProperties();
         // Update mesh bounds. The camera needs to know when to render this object
@@ -51,7 +63,8 @@ public class ShaderVisualizer : MonoBehaviour
 
     private void Start()
     {
-        GetComponent<MeshFilter>().mesh = visualizer.InitializeMesh(edgeWidth);
+        UpdateMesh();
+
         GetComponent<MeshRenderer>().materials = visualizer.Materials;
     }
 
@@ -66,5 +79,7 @@ public class ShaderVisualizer : MonoBehaviour
                 visualizer = GetComponent<ShaderVisualizerIntersectioned>();
                 break;
         }
+
+        collider = GetComponent<MeshCollider>();
     }
 }
