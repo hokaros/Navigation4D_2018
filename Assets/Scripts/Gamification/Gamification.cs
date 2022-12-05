@@ -50,7 +50,7 @@ public class Gamification : MonoBehaviour {
 		wTargetPosText.text = target.Position.w.ToString("F2");
 	}
 
-	private void NextTarget()
+	public void NextTarget()
     {
 		Vector4 newTargetPos = player.Position + new Vector4(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized * targetSpawnRadius;
 		originalPlayerPos = target.Position;
