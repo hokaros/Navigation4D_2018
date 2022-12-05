@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class Gamification : MonoBehaviour {
 
 	[SerializeField] private int totalTargets = 10;
+	[SerializeField] private int layersOfObstacles = 2;
 
 	[SerializeField] private Transform4 player;
 	[SerializeField] private Transform4 target;
@@ -32,6 +33,7 @@ public class Gamification : MonoBehaviour {
 	private int collectedTargets = 0;
 	private bool gameIsOn = false;
 	private Vector4 originalPlayerPos;
+	private WallGenerator wallGenerator;
 
 
 	private void UpdatePlayerPositionLabels()
@@ -50,6 +52,15 @@ public class Gamification : MonoBehaviour {
 		wTargetPosText.text = target.Position.w.ToString("F2");
 	}
 
+	public void FirstTarget()
+    {
+		Vector4 newTargetPos = player.Position + new Vector4(0f, 0f, 30f, 0f);
+		target.Position = newTargetPos;
+		UpdateTargetPositionLabels();
+		wallGenerator.ClearWalls();
+		wallGenerator.SpawnWalls(player.Position, newTargetPos, layersOfObstacles);
+	}
+
 	public void NextTarget()
     {
 		Vector4 newTargetPos = player.Position + new Vector4(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized * targetSpawnRadius;
@@ -64,6 +75,8 @@ public class Gamification : MonoBehaviour {
         }
         else
         {
+			wallGenerator.ClearWalls();
+			wallGenerator.SpawnWalls(player.Position, newTargetPos, layersOfObstacles);
 			timer.Resume();
 		}	
     }
@@ -80,11 +93,10 @@ public class Gamification : MonoBehaviour {
     {
 		gameIsOn = true;
 		startButton.SetActive(false);
-		collectedTargets = -1;
+		collectedTargets = 0;
 		timer.Reset();
 		timer.Start();
-		target.Position = player.Position;
-		NextTarget();
+		FirstTarget();
     }
 
 	public void ExitToMenu()
@@ -99,6 +111,7 @@ public class Gamification : MonoBehaviour {
 
 	void Awake () {
 		timer = GetComponent<Timer>();
+		wallGenerator = FindObjectOfType<WallGenerator>();
 	}
 	
 	void Update () {
