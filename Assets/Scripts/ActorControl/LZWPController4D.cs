@@ -91,4 +91,11 @@ class LZWPController4D : IInput4D
         Ray ray = new Ray(origin, direction);
         return ray;
     }
+
+    public bool TriggerMenu()
+    {
+        LzwpInput.Button btnPositive = Lzwp.input.flysticks[0].GetButton(LzwpInput.Flystick.ButtonID.Joystick);
+        LzwpInput.Button btnNegative = Lzwp.input.flysticks[1].GetButton(LzwpInput.Flystick.ButtonID.Joystick);
+        return (btnPositive.isActive && btnNegative.isActive);
+    }
 }

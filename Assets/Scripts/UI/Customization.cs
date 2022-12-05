@@ -262,10 +262,7 @@ public class Customization : MonoBehaviour
             }
         }
         
-
-
-        // Toggle customization
-        if (Input.GetKeyDown(KeyCode.T))
+        if (inputManager.TriggerMenu())
         {
             if (customizationMenu.activeInHierarchy)
             {

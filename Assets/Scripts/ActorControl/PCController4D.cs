@@ -39,4 +39,9 @@ class PCController4D : IInput4D
         if (camera == null) SetCamera();
         return camera.ScreenPointToRay(Input.mousePosition);
     }
+
+    public bool TriggerMenu()
+    {
+        return Input.GetKeyDown(KeyCode.T);
+    }
 }
