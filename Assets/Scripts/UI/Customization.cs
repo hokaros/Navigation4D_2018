@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Customization : MonoBehaviour
 {
@@ -185,6 +186,11 @@ public class Customization : MonoBehaviour
     public void AddPolytope(GameObject polytope)
     {
         polytopes.Add(polytope);
+    }
+
+    public void OnExitButtonClicked()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void ChangePolytope(int indexDiff)
