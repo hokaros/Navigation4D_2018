@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Timer))]
 public class Gamification : MonoBehaviour {
 
-	[SerializeField] private int totalTargets=10;
+	[SerializeField] private int totalTargets = 10;
 
 	[SerializeField] private Transform4 player;
 	[SerializeField] private Transform4 target;
@@ -30,6 +31,7 @@ public class Gamification : MonoBehaviour {
 	private Timer timer;
 	private int collectedTargets = 0;
 	private bool gameIsOn = false;
+	private Vector4 originalPlayerPos;
 
 
 	private void UpdatePlayerPositionLabels()
@@ -51,6 +53,7 @@ public class Gamification : MonoBehaviour {
 	private void NextTarget()
     {
 		Vector4 newTargetPos = player.Position + new Vector4(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized * targetSpawnRadius;
+		originalPlayerPos = target.Position;
 		target.Position = newTargetPos;
 		UpdateTargetPositionLabels();
 		collectedTargets++;
@@ -77,10 +80,22 @@ public class Gamification : MonoBehaviour {
     {
 		gameIsOn = true;
 		startButton.SetActive(false);
-		collectedTargets = 0;
+		collectedTargets = -1;
 		timer.Reset();
 		timer.Start();
+		target.Position = player.Position;
+		NextTarget();
     }
+
+	public void ExitToMenu()
+    {
+		SceneManager.LoadScene("MainMenu");
+    }
+
+	public void ResetPosition()
+	{
+		player.Position = originalPlayerPos;
+	}
 
 	void Awake () {
 		timer = GetComponent<Timer>();
@@ -97,6 +112,5 @@ public class Gamification : MonoBehaviour {
 				NextTarget();
 			}
 		}
-        
 	}
 }
