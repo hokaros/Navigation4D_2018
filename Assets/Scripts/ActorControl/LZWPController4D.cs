@@ -68,21 +68,20 @@ class LZWPController4D : IInput4D
         return positive - negative;
     }
 
-    public void RaycastClick()
-    {
-        // TODO: implement
-    }
-
     public bool TriggerRaycast()
     {
-        // TODO: implement
-        return false;
+        LzwpInput.Button btnPositive = Lzwp.input.flysticks[0].GetButton(LzwpInput.Flystick.ButtonID.Fire);
+        LzwpInput.Button btnNegative = Lzwp.input.flysticks[1].GetButton(LzwpInput.Flystick.ButtonID.Fire);
+        return btnNegative.isActive && btnPositive.isActive;
     }
 
-    RaycastHit[] IInput4D.RaycastClick()
+    public RaycastHit[] RaycastClick()
     {
-        Vector3 origin = Vector3.forward; // retrieve flystick position
-        // TODO: implement
-        return Physics.RaycastAll(Camera.main.ScreenPointToRay(origin));
+        // TODO: test in LZWP
+        LzwpPose flystick = Lzwp.input.flysticks[1].pose;
+        Vector3 origin = flystick.position;
+        Vector3 direction = flystick.rotation * Vector3.forward;
+        Ray ray = new Ray(origin, direction);
+        return Physics.RaycastAll(ray);
     }
 }
