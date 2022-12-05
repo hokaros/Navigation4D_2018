@@ -31,18 +31,12 @@ class PCController4D : IInput4D
     public RaycastHit[] RaycastClick()
     {
         if (camera == null) SetCamera();
-        return Physics.RaycastAll(camera.ScreenPointToRay(Input.mousePosition));
+        return Physics.RaycastAll(GetRay());
     }
 
-    public Vector3 GetPointerPosition()
+    public Ray GetRay()
     {
         if (camera == null) SetCamera();
-        return camera.ScreenPointToRay(Input.mousePosition).origin;
-    }
-
-    public Quaternion GetPointerRotation()
-    {
-        if (camera == null) SetCamera();
-        return Quaternion.Euler(camera.ScreenPointToRay(Input.mousePosition).direction);
+        return camera.ScreenPointToRay(Input.mousePosition);
     }
 }

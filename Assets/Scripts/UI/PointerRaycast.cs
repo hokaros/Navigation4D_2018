@@ -27,8 +27,9 @@ public class PointerRaycast : MonoBehaviour {
 
 	private void UpdateTransform()
     {
-		transform.position = inputManager.GetPointerPosition();
-		transform.rotation = inputManager.GetPointerRotation();
+		Ray ray = inputManager.GetRay();
+		transform.position = ray.origin;
+		transform.rotation = Quaternion.Euler(ray.direction);
 		Vector3[] positions = { transform.position, transform.position + transform.forward * rayLength };
 		lineRenderer.SetPositions(positions);
 	}

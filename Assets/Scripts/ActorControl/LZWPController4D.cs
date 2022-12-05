@@ -79,20 +79,16 @@ class LZWPController4D : IInput4D
     public RaycastHit[] RaycastClick()
     {
         // TODO: test in LZWP
+        Ray ray = GetRay();
+        return Physics.RaycastAll(ray);
+    }
+
+    public Ray GetRay()
+    {
         LzwpPose flystick = Lzwp.input.flysticks[1].pose;
         Vector3 origin = flystick.position;
         Vector3 direction = flystick.rotation * Vector3.forward;
         Ray ray = new Ray(origin, direction);
-        return Physics.RaycastAll(ray);
-    }
-
-    public Vector3 GetPointerPosition()
-    {
-        return Lzwp.input.flysticks[1].pose.position;
-    }
-
-    public Quaternion GetPointerRotation()
-    {
-        return Lzwp.input.flysticks[1].pose.rotation;
+        return ray;
     }
 }

@@ -199,8 +199,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayLength: 1000
-  enabledWidth: 0.3
-  disabledWidth: 0.03
+  enabledWidth: 0.03
+  disabledWidth: 0.001
 --- !u!120 &120044635211395352
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -241,7 +241,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 2
-    widthMultiplier: 0.03
+    widthMultiplier: 0.001
     widthCurve:
       serializedVersion: 2
       m_Curve:
