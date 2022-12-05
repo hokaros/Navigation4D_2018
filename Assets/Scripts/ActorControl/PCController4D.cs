@@ -24,7 +24,7 @@ class PCController4D : IInput4D
     public RaycastHit[] RaycastClick()
     {
         GameObject[] cameras = GameObject.FindGameObjectsWithTag("CameraLZWP");
-        Camera rayCamera = cameras[0].GetComponent<Camera>()
+        Camera rayCamera = cameras[0].GetComponent<Camera>();
         return Physics.RaycastAll(rayCamera.ScreenPointToRay(Input.mousePosition));
     }
 }
