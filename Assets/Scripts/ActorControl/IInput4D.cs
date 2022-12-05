@@ -19,6 +19,9 @@ interface IInput4D
     float GetYWRotation();
     float GetZWRotation();
 
+    Vector3 GetPointerPosition();
+    Quaternion GetPointerRotation();
+
     bool TriggerRaycast();
 
     RaycastHit[] RaycastClick();

@@ -24,7 +24,8 @@ public class InputManager : MonoBehaviour {
 
 	public bool TriggerRaycast() { return input.TriggerRaycast(); }
 	public RaycastHit[] RaycastClick() { return input.RaycastClick(); }
-
+	public Vector3 GetPointerPosition() { return input.GetPointerPosition(); }
+	public Quaternion GetPointerRotation() { return input.GetPointerRotation(); }
 	public void DisableController()
     {
 		BasicController controller = GetComponent<BasicController>();
