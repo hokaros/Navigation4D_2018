@@ -73,7 +73,7 @@ public class Gamification : MonoBehaviour {
 		gameIsOn = false;
 	}
 
-	private void StartGame()
+	public void StartGame()
     {
 		gameIsOn = true;
 		startButton.SetActive(false);

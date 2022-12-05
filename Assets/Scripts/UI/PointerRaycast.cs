@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PointerRaycast : MonoBehaviour {
 
@@ -26,6 +27,14 @@ public class PointerRaycast : MonoBehaviour {
         if (inputManager.TriggerRaycast())
         {
 			hits = inputManager.RaycastClick();
+			foreach(RaycastHit hit in hits)
+            {
+				Button button = hit.collider.GetComponent<Button>();
+				if (button != null)
+                {
+					button.onClick.Invoke();
+                }
+            }
 			if (hits.Length <= 0) { }
 
 			var sorted = hits.ToList()

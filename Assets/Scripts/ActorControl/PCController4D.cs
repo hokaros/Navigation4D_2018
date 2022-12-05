@@ -23,7 +23,8 @@ class PCController4D : IInput4D
 
     public RaycastHit[] RaycastClick()
     {
-        Debug.Log(GameObject.FindGameObjectsWithTag("MainCamera").Length);
-        return Physics.RaycastAll(Camera.main.ScreenPointToRay(Input.mousePosition));
+        GameObject[] cameras = GameObject.FindGameObjectsWithTag("CameraLZWP");
+        Camera rayCamera = cameras[0].GetComponent<Camera>();
+        return Physics.RaycastAll(rayCamera.ScreenPointToRay(Input.mousePosition));
     }
 }

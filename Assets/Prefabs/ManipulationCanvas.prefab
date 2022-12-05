@@ -84,6 +84,7 @@ GameObject:
   - component: {fileID: 222185531531188286}
   - component: {fileID: 114900984015962146}
   - component: {fileID: 114272498555086722}
+  - component: {fileID: 65354923051775602}
   m_Layer: 0
   m_Name: Tetraplex
   m_TagString: Untagged
@@ -134,6 +135,7 @@ GameObject:
   - component: {fileID: 222818611123978936}
   - component: {fileID: 114755036197691810}
   - component: {fileID: 114684997847596622}
+  - component: {fileID: 65187348815530252}
   m_Layer: 0
   m_Name: Orthoplex
   m_TagString: Untagged
@@ -500,6 +502,7 @@ GameObject:
   - component: {fileID: 222722035042699892}
   - component: {fileID: 114075084502741228}
   - component: {fileID: 114951285838735998}
+  - component: {fileID: 65758657776045892}
   m_Layer: 0
   m_Name: Dodecaplex
   m_TagString: Untagged
@@ -673,6 +676,7 @@ GameObject:
   - component: {fileID: 222542998371084082}
   - component: {fileID: 114073107585828350}
   - component: {fileID: 114117042218842766}
+  - component: {fileID: 65888810185827380}
   m_Layer: 0
   m_Name: ButtonRotation
   m_TagString: Untagged
@@ -691,6 +695,7 @@ GameObject:
   - component: {fileID: 222624748689320764}
   - component: {fileID: 114140917997926780}
   - component: {fileID: 114573402148815420}
+  - component: {fileID: 65121667300327238}
   m_Layer: 0
   m_Name: Tesseract
   m_TagString: Untagged
@@ -727,6 +732,7 @@ GameObject:
   - component: {fileID: 222262916672167838}
   - component: {fileID: 114708839107556694}
   - component: {fileID: 114207252570051166}
+  - component: {fileID: 65407877537586582}
   m_Layer: 0
   m_Name: Simplex
   m_TagString: Untagged
@@ -893,6 +899,7 @@ GameObject:
   - component: {fileID: 222744185577755110}
   - component: {fileID: 114478596138653118}
   - component: {fileID: 114035740642930260}
+  - component: {fileID: 65829123876780810}
   m_Layer: 0
   m_Name: ChangeMultiplier
   m_TagString: Untagged
@@ -1047,6 +1054,7 @@ GameObject:
   - component: {fileID: 222470570675496388}
   - component: {fileID: 114297727587142652}
   - component: {fileID: 114053515409657576}
+  - component: {fileID: 65914028171006284}
   m_Layer: 0
   m_Name: ButtonPosition
   m_TagString: Untagged
@@ -1150,6 +1158,7 @@ GameObject:
   - component: {fileID: 222373364231102788}
   - component: {fileID: 114609865207699600}
   - component: {fileID: 114291526429704220}
+  - component: {fileID: 65599712117587238}
   m_Layer: 0
   m_Name: Octaplex
   m_TagString: Untagged
@@ -1546,6 +1555,66 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1467686754303798}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &65121667300327238
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1487268768516280}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 75.62, y: 29.54, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65187348815530252
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1090419065970230}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 75.62, y: 29.54, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65354923051775602
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1022288655388600}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 75.62, y: 29.54, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65407877537586582
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1497719862061212}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 75.62, y: 29.54, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65599712117587238
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1743265100548932}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 75.62, y: 29.54, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65623604811372814
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -1569,6 +1638,54 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65758657776045892
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1356123027308124}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 75.62, y: 29.54, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65829123876780810
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1603646686215306}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 86.3, y: 35.46, z: 0.3}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65888810185827380
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1485045634843478}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 70.24, y: 22.65, z: 0.3}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65914028171006284
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1673817609374138}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 70.24, y: 22.65, z: 0.3}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114011939167798788
 MonoBehaviour:
