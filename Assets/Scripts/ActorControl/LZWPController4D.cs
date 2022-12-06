@@ -68,21 +68,34 @@ class LZWPController4D : IInput4D
         return positive - negative;
     }
 
-    public void RaycastClick()
-    {
-        // TODO: implement
-    }
-
     public bool TriggerRaycast()
     {
-        // TODO: implement
-        return false;
+        // TODO: test in LZWP
+        LzwpInput.Button btnPositive = Lzwp.input.flysticks[0].GetButton(LzwpInput.Flystick.ButtonID.Fire);
+        LzwpInput.Button btnNegative = Lzwp.input.flysticks[1].GetButton(LzwpInput.Flystick.ButtonID.Fire);
+        return btnNegative.isActive && btnPositive.isActive;
     }
 
-    RaycastHit[] IInput4D.RaycastClick()
+    public RaycastHit[] RaycastClick()
     {
-        Vector3 origin = Vector3.forward; // retrieve flystick position
-        // TODO: implement
-        return Physics.RaycastAll(Camera.main.ScreenPointToRay(origin));
+        // TODO: test in LZWP
+        Ray ray = GetRay();
+        return Physics.RaycastAll(ray);
+    }
+
+    public Ray GetRay()
+    {
+        LzwpPose flystick = Lzwp.input.flysticks[1].pose;
+        Vector3 origin = flystick.position;
+        Vector3 direction = flystick.rotation * Vector3.forward;
+        Ray ray = new Ray(origin, direction);
+        return ray;
+    }
+
+    public bool TriggerMenu()
+    {
+        LzwpInput.Button btnPositive = Lzwp.input.flysticks[0].GetButton(LzwpInput.Flystick.ButtonID.Joystick);
+        LzwpInput.Button btnNegative = Lzwp.input.flysticks[1].GetButton(LzwpInput.Flystick.ButtonID.Joystick);
+        return (btnPositive.isActive && btnNegative.isActive);
     }
 }
