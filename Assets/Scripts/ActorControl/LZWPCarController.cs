@@ -27,13 +27,18 @@ class LZWPCarController : LZWPControllerBase, IInput4D
     public float GetZWRotation() => GetButtonAxis3();
 
 
-    public bool TriggerRaycast()
+    new public bool TriggerRaycast()
     {
-        throw new NotImplementedException();
+        return base.TriggerRaycast();
     }
 
-    RaycastHit[] IInput4D.RaycastClick()
+    new public RaycastHit[] RaycastClick()
     {
         return base.RaycastClick();
+    }
+
+    new public bool TriggerMenu()
+    {
+        return base.TriggerMenu();
     }
 }
