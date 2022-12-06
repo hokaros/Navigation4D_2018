@@ -18,6 +18,8 @@ interface IInput4D
     float GetYZRotation();
     float GetYWRotation();
     float GetZWRotation();
+    Ray GetRay();
+    bool TriggerMenu();
 
     bool TriggerRaycast();
 

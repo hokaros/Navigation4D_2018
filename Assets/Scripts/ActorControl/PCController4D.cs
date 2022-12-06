@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 using UnityEngine;
 
 class PCController4D : IInput4D
-{ 
+{
+    private Camera camera;
     public float GetXAxis() => Input.GetAxis("Horizontal");
     public float GetYAxis() => Input.GetAxis("Forward"); 
     public float GetZAxis() => Input.GetAxis("Vertical");
@@ -21,8 +22,26 @@ class PCController4D : IInput4D
 
     public bool TriggerRaycast() => Input.GetMouseButtonDown(0);
 
+    private void SetCamera()
+    {
+        GameObject[] cameras = GameObject.FindGameObjectsWithTag("CameraLZWP");
+        camera = cameras[0].GetComponent<Camera>();
+    }
+
     public RaycastHit[] RaycastClick()
     {
-        return Physics.RaycastAll(Camera.main.ScreenPointToRay(Input.mousePosition));
+        if (camera == null) SetCamera();
+        return Physics.RaycastAll(GetRay());
+    }
+
+    public Ray GetRay()
+    {
+        if (camera == null) SetCamera();
+        return camera.ScreenPointToRay(Input.mousePosition);
+    }
+
+    public bool TriggerMenu()
+    {
+        return Input.GetKeyDown(KeyCode.T);
     }
 }

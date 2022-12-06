@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Customization : MonoBehaviour
 {
@@ -172,12 +173,24 @@ public class Customization : MonoBehaviour
 
     public void OnChangeInfluenceButtonClicked()
     {
-        ChangeCustomizationAspect(CustomizationAspect.CHANGE_INFLUENCE);
+        if (customizationAspect == CustomizationAspect.CHANGE_INFLUENCE)
+        {
+            ChangeCustomizationAspect(CustomizationAspect.POSITION);
+        }
+        else
+        {
+            ChangeCustomizationAspect(CustomizationAspect.CHANGE_INFLUENCE);
+        }
     }
 
     public void AddPolytope(GameObject polytope)
     {
         polytopes.Add(polytope);
+    }
+
+    public void OnExitButtonClicked()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void ChangePolytope(int indexDiff)
@@ -234,29 +247,22 @@ public class Customization : MonoBehaviour
         {
             if (activeTransform != null)
             {
-                switch (customizationAspect)
+                if(customizationAspect==CustomizationAspect.POSITION
+                    ||customizationAspect==CustomizationAspect.ROTATION)
                 {
-                    case CustomizationAspect.POSITION:
-                        UpdatePosition();
-                        UpdatePositionLabels();
-                        break;
-                    case CustomizationAspect.ROTATION:
-                        UpdateRotation();
-                        UpdateRotationMatrixLabels();
-                        break;
-                    case CustomizationAspect.CHANGE_INFLUENCE:
-                        ChangeToolInfluence();
-                        break;
-                    default:
-                        break;
+                    UpdatePosition();
+                    UpdatePositionLabels();
+                    UpdateRotation();
+                    UpdateRotationMatrixLabels();
+                }
+                else if(customizationAspect==CustomizationAspect.CHANGE_INFLUENCE)
+                {
+                    ChangeToolInfluence();
                 }
             }
         }
         
-
-
-        // Toggle customization
-        if (Input.GetKeyDown(KeyCode.T))
+        if (inputManager.TriggerMenu())
         {
             if (customizationMenu.activeInHierarchy)
             {

@@ -19,14 +19,19 @@ class LZWPController4D : LZWPControllerBase, IInput4D
     public float GetYWRotation() => GetButtonAxisFire();
     public float GetZWRotation() => GetButtonAxisJoystick();
 
-    public bool TriggerRaycast()
+
+    new public bool TriggerRaycast()
     {
-        // TODO: implement
-        return false;
+        return base.TriggerRaycast();
     }
 
-    RaycastHit[] IInput4D.RaycastClick()
+    new public RaycastHit[] RaycastClick()
     {
         return base.RaycastClick();
+    }
+
+    new public bool TriggerMenu()
+    {
+        return base.TriggerMenu();
     }
 }
