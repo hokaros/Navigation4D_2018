@@ -207,7 +207,8 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114774596974454034, guid: a56290503469bc843b6c16e6b3107a2c, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: a56290503469bc843b6c16e6b3107a2c, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &630047221
@@ -219,6 +220,7 @@ GameObject:
   m_Component:
   - component: {fileID: 630047222}
   - component: {fileID: 630047223}
+  - component: {fileID: 630047224}
   m_Layer: 0
   m_Name: Polytopes
   m_TagString: Untagged
@@ -250,15 +252,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cf54f86f1d01844e9e3c75d03ac766e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  position: {x: 0, y: 0, z: 0, w: 0}
+  position: {x: -7.76, y: 10, z: 25.65, w: 0}
   initialRotation:
-    xy: 0
-    xz: 0
+    xy: 1.19
+    xz: 0.3
     xw: 0
-    yz: 0
+    yz: 0.76
     yw: 0
     zw: 0
-  updateRotationInPlayMode: 0
+  updateRotationInPlayMode: 1
+--- !u!114 &630047224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 630047221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a6c56857735bec41bf20665bb5824dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridCell: {fileID: 1625426533616658, guid: 51a600935486b274fb18e24f443bca85, type: 2}
+  dimensions: {x: 4, y: 4, z: 4, w: 4}
+  _offset: 5
 --- !u!1001 &678022355
 Prefab:
   m_ObjectHideFlags: 0
