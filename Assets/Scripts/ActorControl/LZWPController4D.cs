@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-class LZWPController4D : IInput4D
+class LZWPController4D : LZWPControllerBase, IInput4D
 {
     public float GetXAxis() => Lzwp.input.flysticks[0].joysticks[0]; // 1st joystick horizontal axis
     public float GetYAxis() => Lzwp.input.flysticks[1].joysticks[1]; // 2nd joystick vertical axis
@@ -20,69 +20,18 @@ class LZWPController4D : IInput4D
     public float GetZWRotation() => GetButtonAxisJoystick();
 
 
-    private float GetButtonAxis1()
+    new public bool TriggerRaycast()
     {
-        LzwpInput.Button btnPositive = Lzwp.input.flysticks[0].GetButton(LzwpInput.Flystick.ButtonID.Button1);
-        LzwpInput.Button btnNegative = Lzwp.input.flysticks[0].GetButton(LzwpInput.Flystick.ButtonID.Button2);
-        return GetButtonAxis(btnPositive, btnNegative);
+        return base.TriggerRaycast();
     }
 
-    private float GetButtonAxis2()
+    new public RaycastHit[] RaycastClick()
     {
-        LzwpInput.Button btnPositive = Lzwp.input.flysticks[0].GetButton(LzwpInput.Flystick.ButtonID.Button3);
-        LzwpInput.Button btnNegative = Lzwp.input.flysticks[0].GetButton(LzwpInput.Flystick.ButtonID.Button4);
-        return GetButtonAxis(btnPositive, btnNegative);
-    }
-    private float GetButtonAxis3()
-    {
-        LzwpInput.Button btnPositive = Lzwp.input.flysticks[1].GetButton(LzwpInput.Flystick.ButtonID.Button1);
-        LzwpInput.Button btnNegative = Lzwp.input.flysticks[1].GetButton(LzwpInput.Flystick.ButtonID.Button2);
-        return GetButtonAxis(btnPositive, btnNegative);
-    }
-    private float GetButtonAxis4()
-    {
-        LzwpInput.Button btnPositive = Lzwp.input.flysticks[1].GetButton(LzwpInput.Flystick.ButtonID.Button3);
-        LzwpInput.Button btnNegative = Lzwp.input.flysticks[1].GetButton(LzwpInput.Flystick.ButtonID.Button4);
-        return GetButtonAxis(btnPositive, btnNegative);
+        return base.RaycastClick();
     }
 
-    private float GetButtonAxisFire()
+    new public bool TriggerMenu()
     {
-        LzwpInput.Button btnPositive = Lzwp.input.flysticks[0].GetButton(LzwpInput.Flystick.ButtonID.Fire);
-        LzwpInput.Button btnNegative = Lzwp.input.flysticks[1].GetButton(LzwpInput.Flystick.ButtonID.Fire);
-        return GetButtonAxis(btnPositive, btnNegative);
-    }
-
-    private float GetButtonAxisJoystick()
-    {
-        LzwpInput.Button btnPositive = Lzwp.input.flysticks[0].GetButton(LzwpInput.Flystick.ButtonID.Joystick);
-        LzwpInput.Button btnNegative = Lzwp.input.flysticks[1].GetButton(LzwpInput.Flystick.ButtonID.Joystick);
-        return GetButtonAxis(btnPositive, btnNegative);
-    }
-
-    private float GetButtonAxis(LzwpInput.Button btnPositive, LzwpInput.Button btnNegative)
-    {
-        float positive = btnPositive.isActive ? 1f : 0f;
-        float negative = btnNegative.isActive ? 1f : 0f;
-
-        return positive - negative;
-    }
-
-    public void RaycastClick()
-    {
-        // TODO: implement
-    }
-
-    public bool TriggerRaycast()
-    {
-        // TODO: implement
-        return false;
-    }
-
-    RaycastHit[] IInput4D.RaycastClick()
-    {
-        Vector3 origin = Vector3.forward; // retrieve flystick position
-        // TODO: implement
-        return Physics.RaycastAll(Camera.main.ScreenPointToRay(origin));
+        return base.TriggerMenu();
     }
 }

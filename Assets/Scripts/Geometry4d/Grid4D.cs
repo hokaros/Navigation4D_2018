@@ -25,7 +25,7 @@ public class Grid4D : MonoBehaviour
                 {
                     for (int w = 0; w < dimensions[3]; w++)
                     {
-                        GameObject newCell = Instantiate(gridCell);
+                        GameObject newCell = Instantiate(gridCell, transform);
                         Transform4 t4 = newCell.GetComponent<Transform4>();
                         t4.Position = new Vector4(x * _offset + pos.x, y * _offset + pos.y, z * _offset + pos.z, w * _offset+pos.w);
                     }
