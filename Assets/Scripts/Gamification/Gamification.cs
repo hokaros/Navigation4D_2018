@@ -65,6 +65,7 @@ public class Gamification : MonoBehaviour {
 		Vector4 newTargetPos = player.Position + new Vector4(0f, 0f, 30f, 0f);
 		target.Position = newTargetPos;
 		UpdateTargetPositionLabels();
+		targetCountText.text = $"{collectedTargets}/{totalTargets}";
 		wallGenerator.ClearWalls();
 		wallGenerator.SpawnWalls(player.Position, newTargetPos, layersOfObstacles);
 	}
