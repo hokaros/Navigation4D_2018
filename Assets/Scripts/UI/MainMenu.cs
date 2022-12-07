@@ -72,16 +72,16 @@ public class MainMenu : MonoBehaviour {
         switch (state)
         {
             case MainMenuState.TIME_CHALLENGE:
-                SceneManager.LoadScene("Gamification");
+                Lzwp.sync.LoadScene("Gamification");
                 break;
             case MainMenuState.SANDBOX_MODE:
-                SceneManager.LoadScene("PolytopeManipulation");
+                Lzwp.sync.LoadScene("PolytopeManipulation");
                 break;
             case MainMenuState.REGULAR_4POLYTOPES:
-                SceneManager.LoadScene("RegularPolytopes");
+                Lzwp.sync.LoadScene("RegularPolytopes");
                 break;
             case MainMenuState.TESSERACT_GRID:
-                SceneManager.LoadScene("TesseractGrid");
+                Lzwp.sync.LoadScene("TesseractGrid");
                 break;
         }
     }

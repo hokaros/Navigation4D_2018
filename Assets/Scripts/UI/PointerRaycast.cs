@@ -29,7 +29,7 @@ public class PointerRaycast : MonoBehaviour {
     {
 		Ray ray = inputManager.GetRay();
 		transform.position = ray.origin;
-		transform.rotation = Quaternion.Euler(ray.direction);
+		transform.forward = ray.direction;
 		Vector3[] positions = { transform.position, transform.position + transform.forward * rayLength };
 		lineRenderer.SetPositions(positions);
 	}

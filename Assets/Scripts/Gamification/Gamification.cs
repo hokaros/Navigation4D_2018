@@ -35,13 +35,21 @@ public class Gamification : MonoBehaviour {
 	private Vector4 originalPlayerPos;
 	private WallGenerator wallGenerator;
 
+	public Vector4 PlayerHeadPosition()
+	{
+		Vector3 headOffsetLocal = Lzwp.display.pointsOfView[0].position - LzwpOrigin.GetPosition();
+		Vector4 playerHeadPos = player.PointToWorld(new Vector4(headOffsetLocal.x, headOffsetLocal.y, headOffsetLocal.z, 0));
+		return playerHeadPos;
+	}
+
 
 	private void UpdatePlayerPositionLabels()
     {
-		xPlayerPosText.text = player.Position.x.ToString("F2");
-		yPlayerPosText.text = player.Position.y.ToString("F2");
-		zPlayerPosText.text = player.Position.z.ToString("F2");
-		wPlayerPosText.text = player.Position.w.ToString("F2");
+		Vector4 playerPos = PlayerHeadPosition();
+		xPlayerPosText.text = playerPos.x.ToString("F2");
+		yPlayerPosText.text = playerPos.y.ToString("F2");
+		zPlayerPosText.text = playerPos.z.ToString("F2");
+		wPlayerPosText.text = playerPos.w.ToString("F2");
     }
 
 	private void UpdateTargetPositionLabels()
@@ -101,7 +109,7 @@ public class Gamification : MonoBehaviour {
 
 	public void ExitToMenu()
     {
-		SceneManager.LoadScene("MainMenu");
+		Lzwp.sync.LoadScene("MainMenu");
     }
 
 	public void ResetPosition()

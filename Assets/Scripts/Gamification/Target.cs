@@ -17,7 +17,7 @@ public class Target : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(Vector4.Distance(transform4.Position, player.Position) <= getDistance)
+		if (Vector4.Distance(transform4.Position, gamification.PlayerHeadPosition()) <= getDistance)
         {
 			gamification.NextTarget();
         }

@@ -190,7 +190,7 @@ public class Customization : MonoBehaviour
 
     public void OnExitButtonClicked()
     {
-        SceneManager.LoadScene("MainMenu");
+        Lzwp.sync.LoadScene("MainMenu");
     }
 
     public void ChangePolytope(int indexDiff)
@@ -225,7 +225,7 @@ public class Customization : MonoBehaviour
 
     private void ChangeToolInfluence()
     {
-        toolInfluence += inputManager.GetXAxis() * Time.deltaTime * toolInfluence;
+        toolInfluence += inputManager.GetZAxis() * Time.deltaTime * toolInfluence;
         toolInfluenceText.text = toolInfluence.ToString("F2");
     }
 
