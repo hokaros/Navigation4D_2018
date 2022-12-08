@@ -14,15 +14,15 @@ class LZWPCarController : LZWPControllerBase, IInput4D
     public float GetYAxis() => 0f;
     public float GetWAxis() => 0f;
 
-    public float GetXYRotation() => Lzwp.input.flysticks[0].joysticks[0]; // 1st joystick horizontal axis
+    public float GetXYRotation() => -Lzwp.input.flysticks[0].joysticks[0]; // 1st joystick horizontal axis
 
-    public float GetXZRotation() => Lzwp.input.flysticks[1].joysticks[0]; // 2nd joystick horizontal axis
+    public float GetXZRotation() => -Lzwp.input.flysticks[1].joysticks[0]; // 2nd joystick horizontal axis
 
     public float GetXWRotation() => GetButtonAxis1();
 
-    public float GetYZRotation() => Lzwp.input.flysticks[0].joysticks[1]; // 1st joystick vertical axis 
+    public float GetYZRotation() => -Lzwp.input.flysticks[0].joysticks[1]; // 1st joystick vertical axis 
 
-    public float GetYWRotation() => Lzwp.input.flysticks[1].joysticks[1]; // 2nd joystick vertical axis
+    public float GetYWRotation() => -Lzwp.input.flysticks[1].joysticks[1]; // 2nd joystick vertical axis
 
     public float GetZWRotation() => GetButtonAxis3();
 
