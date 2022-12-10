@@ -72,9 +72,8 @@ class LZWPControllerBase
     }
     public bool TriggerRaycast()
     {
-        // TODO: test in LZWP
-        LzwpInput.Button btnPositive = Lzwp.input.flysticks[0].GetButton(LzwpInput.Flystick.ButtonID.Fire);
-        LzwpInput.Button btnNegative = Lzwp.input.flysticks[1].GetButton(LzwpInput.Flystick.ButtonID.Fire);
+        LzwpInput.Button btnPositive = Lzwp.input.flysticks[1].GetButton(LzwpInput.Flystick.ButtonID.Fire); // the right flystick
+        LzwpInput.Button btnNegative = Lzwp.input.flysticks[0].GetButton(LzwpInput.Flystick.ButtonID.Fire);
         return btnNegative.isActive && btnPositive.isActive;
     }
 

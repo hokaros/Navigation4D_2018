@@ -73,8 +73,6 @@ public class Polytope4Accelerated : Polytope4
     {
         List<Vector4> vertices = VerticesWorld;
 
-        Dictionary<int, List<Vector4>> faceIntersections = new Dictionary<int, List<Vector4>>(); // faceIndex -> intersection points
-
         int kernelIndex = edgeIntersectionShader.FindKernel("IntersectEdges");
         // Load data into the shader
         ComputeBuffer vertexBuffer = new ComputeBuffer(vertices.Count, sizeof(float) * 4);
