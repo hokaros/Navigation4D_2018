@@ -8,6 +8,7 @@ public class PointerRaycast : MonoBehaviour {
 
 	[SerializeField] private float rayLength;
 	[SerializeField] private float enabledWidth, disabledWidth;
+	[SerializeField] private GameObject targetMarker;
 
 	private InputManager inputManager;
 	private RaycastHit[] hits;
@@ -32,6 +33,25 @@ public class PointerRaycast : MonoBehaviour {
 		transform.forward = ray.direction;
 		Vector3[] positions = { transform.position, transform.position + transform.forward * rayLength };
 		lineRenderer.SetPositions(positions);
+	}
+
+	private void MarkTarget()
+    {
+		hits = inputManager.RaycastClick();
+
+		var sorted = hits.ToList();
+		if (sorted.Count > 0)
+		{
+			sorted.Sort((first, second) => first.distance.CompareTo(second.distance));
+
+			targetMarker.transform.position = hits[hits.Length - 1].point;
+			targetMarker.SetActive(true);
+		}
+		else
+        {
+			
+			targetMarker.SetActive(false);
+		}
 	}
 
 	private void OnTriggerRaycast()
@@ -61,6 +81,7 @@ public class PointerRaycast : MonoBehaviour {
 	
 	void Update () {
 		UpdateTransform();
+		MarkTarget();
         if (inputManager.TriggerRaycast())
         {
 			OnTriggerRaycast();

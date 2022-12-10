@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d94f33163f96b74439cb012c41aced5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  faceMaterial: {fileID: 2100000, guid: ac460fdc54b225c47aae84b14ba89302, type: 2}
+  faceMaterial: {fileID: 2100000, guid: 06781869de5433340b24add32784d5ce, type: 2}
   wideEdgesMaterial: {fileID: 2100000, guid: 7c5ad628742ba0b4c8a9fb46051520f8, type: 2}
   lineEdgesMaterial: {fileID: 2100000, guid: 7c5ad628742ba0b4c8a9fb46051520f8, type: 2}
   faceCoplanarityTolerance: 0.01

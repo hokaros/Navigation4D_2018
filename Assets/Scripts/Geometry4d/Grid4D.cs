@@ -15,6 +15,7 @@ public class Grid4D : MonoBehaviour
 
     void Start()
     {
+        Customization customization = FindObjectOfType<Customization>();
         transform4 = GetComponent<Transform4>();
         Vector4 pos = transform4.Position;
         for (int x = 0; x < dimensions[0]; x++)
@@ -28,6 +29,11 @@ public class Grid4D : MonoBehaviour
                         GameObject newCell = Instantiate(gridCell, transform);
                         Transform4 t4 = newCell.GetComponent<Transform4>();
                         t4.Position = new Vector4(x * _offset + pos.x, y * _offset + pos.y, z * _offset + pos.z, w * _offset+pos.w);
+                        if (customization != null)
+                        {
+                            customization.AddPolytope(newCell);
+                            customization.SetPolytope(newCell);
+                        }
                     }
                 }
             }
