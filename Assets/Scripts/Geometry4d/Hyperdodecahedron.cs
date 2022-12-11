@@ -24,12 +24,12 @@ public class Hyperdodecahedron : Polytope4Accelerated
 			Helpers.CollectSignedPermutations(vertices, new Vector4(0, edgeLength / phi, edgeLength * phi, edgeLength * sqrt5), true);
 			Helpers.CollectSignedPermutations(vertices, new Vector4(edgeLength / phi, edgeLength, edgeLength * phi, 2 * edgeLength), true);
 
-            StreamWriter writer = new StreamWriter("assets/polytopes/hiperdodecahedronVertices.txt");
-            for (int i = 0; i < vertices.Count; i++)
-            {
-                writer.Write(vertices[i].x.ToString().Replace(",", ".") + "," + vertices[i].y.ToString().Replace(",", ".") + "," + vertices[i].z.ToString().Replace(",", ".") + "," + vertices[i].w.ToString().Replace(",", ".") + ";");
-            }
-            writer.Close();
+            //StreamWriter writer = new StreamWriter("assets/polytopes/hiperdodecahedronVertices.txt");
+            //for (int i = 0; i < vertices.Count; i++)
+            //{
+            //    writer.Write(vertices[i].x.ToString().Replace(",", ".") + "," + vertices[i].y.ToString().Replace(",", ".") + "," + vertices[i].z.ToString().Replace(",", ".") + "," + vertices[i].w.ToString().Replace(",", ".") + ";");
+            //}
+            //writer.Close();
             return vertices;
 		}
 	}
