@@ -69,7 +69,7 @@ public static class GeometryIntersection
                 {
                     allPoints.Append($"{p}, ");
                 }
-                Debug.LogWarning($"Intersections with a face: {faceIntersectionPoints.Count}. {allPoints}");
+               // Debug.LogWarning($"Intersections with a face: {faceIntersectionPoints.Count}. {allPoints}");
                 if (faceIntersectionPoints.Count < 2)
                     continue; // can't even form a single edge
             }

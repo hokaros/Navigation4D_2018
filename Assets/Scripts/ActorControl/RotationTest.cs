@@ -24,7 +24,7 @@ public class RotationTest : MonoBehaviour
 
             Vector4 worldPoint = transform4.PointToWorld(testPoint);
             Vector4 outPoint = transform4.PointToLocal(worldPoint);
-            Debug.Log($"In = {testPoint}. World = {worldPoint}. Out = {outPoint}");
+           // Debug.Log($"In = {testPoint}. World = {worldPoint}. Out = {outPoint}");
 
         }
     }

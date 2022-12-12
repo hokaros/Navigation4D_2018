@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -122,7 +122,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4751817753468784, guid: 58722e5e864be9548b0677d31c10cd04, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4751817753468784, guid: 58722e5e864be9548b0677d31c10cd04, type: 2}
       propertyPath: m_LocalPosition.y
@@ -130,7 +130,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4751817753468784, guid: 58722e5e864be9548b0677d31c10cd04, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 15
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4751817753468784, guid: 58722e5e864be9548b0677d31c10cd04, type: 2}
       propertyPath: m_LocalRotation.x
@@ -163,6 +163,18 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1602891628009746, guid: 58722e5e864be9548b0677d31c10cd04, type: 2}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4751817753468784, guid: 58722e5e864be9548b0677d31c10cd04, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4751817753468784, guid: 58722e5e864be9548b0677d31c10cd04, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4751817753468784, guid: 58722e5e864be9548b0677d31c10cd04, type: 2}
+      propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -325,22 +337,22 @@ Prefab:
     - target: {fileID: 224036101280470956, guid: d4cab70adeca6534ba52866185043622,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 408
       objectReference: {fileID: 0}
     - target: {fileID: 224036101280470956, guid: d4cab70adeca6534ba52866185043622,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 163
       objectReference: {fileID: 0}
     - target: {fileID: 224036101280470956, guid: d4cab70adeca6534ba52866185043622,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 816
       objectReference: {fileID: 0}
     - target: {fileID: 224036101280470956, guid: d4cab70adeca6534ba52866185043622,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 326
       objectReference: {fileID: 0}
     - target: {fileID: 224036101280470956, guid: d4cab70adeca6534ba52866185043622,
         type: 2}
@@ -365,12 +377,12 @@ Prefab:
     - target: {fileID: 224036101280470956, guid: d4cab70adeca6534ba52866185043622,
         type: 2}
       propertyPath: m_Pivot.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 224036101280470956, guid: d4cab70adeca6534ba52866185043622,
         type: 2}
       propertyPath: m_Pivot.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 114233747004271912, guid: d4cab70adeca6534ba52866185043622,
         type: 2}
@@ -386,6 +398,26 @@ Prefab:
         type: 2}
       propertyPath: m_FontData.m_Alignment
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 223418577553742792, guid: d4cab70adeca6534ba52866185043622,
+        type: 2}
+      propertyPath: m_RenderMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 224036101280470956, guid: d4cab70adeca6534ba52866185043622,
+        type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224036101280470956, guid: d4cab70adeca6534ba52866185043622,
+        type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224036101280470956, guid: d4cab70adeca6534ba52866185043622,
+        type: 2}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d4cab70adeca6534ba52866185043622, type: 2}
@@ -503,7 +535,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a093c8d4a89ec454b82945e47a9f621b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputType: 0
+  inputType: 1
 --- !u!1001 &1382944047
 Prefab:
   m_ObjectHideFlags: 0
@@ -612,6 +644,36 @@ Prefab:
         type: 2}
       propertyPath: m_ClearFlags
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 20117000374543444, guid: bf1ac880dbe997a46acfe269bbb72014,
+        type: 2}
+      propertyPath: m_BackGroundColor.r
+      value: 0.1137255
+      objectReference: {fileID: 0}
+    - target: {fileID: 20117000374543444, guid: bf1ac880dbe997a46acfe269bbb72014,
+        type: 2}
+      propertyPath: m_BackGroundColor.g
+      value: 0.15686275
+      objectReference: {fileID: 0}
+    - target: {fileID: 20117000374543444, guid: bf1ac880dbe997a46acfe269bbb72014,
+        type: 2}
+      propertyPath: m_BackGroundColor.b
+      value: 0.227451
+      objectReference: {fileID: 0}
+    - target: {fileID: 20707860808229536, guid: bf1ac880dbe997a46acfe269bbb72014,
+        type: 2}
+      propertyPath: m_BackGroundColor.r
+      value: 0.1137255
+      objectReference: {fileID: 0}
+    - target: {fileID: 20707860808229536, guid: bf1ac880dbe997a46acfe269bbb72014,
+        type: 2}
+      propertyPath: m_BackGroundColor.g
+      value: 0.15686275
+      objectReference: {fileID: 0}
+    - target: {fileID: 20707860808229536, guid: bf1ac880dbe997a46acfe269bbb72014,
+        type: 2}
+      propertyPath: m_BackGroundColor.b
+      value: 0.227451
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bf1ac880dbe997a46acfe269bbb72014, type: 2}

@@ -5,7 +5,7 @@ public class NextArrow : MonoBehaviour, IClickable {
 
     public void OnClick()
     {
-        Debug.Log("Next Arrow clicked!");
+       // Debug.Log("Next Arrow clicked!");
         customizationScript.ChangePolytope(1);
     }
 }

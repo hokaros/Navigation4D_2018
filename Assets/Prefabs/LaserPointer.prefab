@@ -127,8 +127,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayLength: 1000
-  enabledWidth: 0.03
-  disabledWidth: 0.001
+  enabledWidth: 0.06
+  disabledWidth: 0.003
   targetMarker: {fileID: 1699279814446592}
 --- !u!120 &120451120858580578
 LineRenderer:

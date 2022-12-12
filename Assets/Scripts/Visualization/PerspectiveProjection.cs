@@ -19,10 +19,10 @@ public class PerspectiveProjection : MonoBehaviour
         Vector4 crossingPoint;
         bool visibleByViewport = viewport.TryCrossingPoint(line, out crossingPoint);
 
-        if (Input.GetKey(KeyCode.Space))
-        {
-            Debug.Log($"camera:{transform4.GlobalPosition}, original:{original}, crossingPoint:{crossingPoint}");
-        }
+        //if (Input.GetKey(KeyCode.Space))
+        //{
+        //    //Debug.Log($"camera:{transform4.GlobalPosition}, original:{original}, crossingPoint:{crossingPoint}");
+        //}
 
         if (!visibleByViewport)
             return null;

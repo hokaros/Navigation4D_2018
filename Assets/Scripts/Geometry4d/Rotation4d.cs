@@ -72,7 +72,7 @@ public class Rotation4d
 	{
 		if (a1 == a2)
 		{
-			Debug.LogError("Axes of a rotation should not be the same");
+			//Debug.LogError("Axes of a rotation should not be the same");
 			return Matrix4x4.identity;
 		}
 

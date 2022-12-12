@@ -259,7 +259,7 @@ public class Polytope4 : MonoBehaviour
         edges = Edges;
         triangles = Triangles;
         faces = Faces;
-        Debug.Log($"Vertices: {vertices.Count}, edges: {edges.Count}, faces: {faces.Count}");
+        //Debug.Log($"Vertices: {vertices.Count}, edges: {edges.Count}, faces: {faces.Count}");
 
         transform4 = GetComponent<Transform4>();
         verticesWorld = vertices.Select(v => transform4.PointToWorld(v)).ToList();
