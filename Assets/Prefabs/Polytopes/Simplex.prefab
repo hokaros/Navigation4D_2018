@@ -102,8 +102,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d94f33163f96b74439cb012c41aced5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  faceMaterial: {fileID: 2100000, guid: 23a1a8003b9906b4fbf1db2cfbfce532, type: 2}
-  wideEdgesMaterial: {fileID: 2100000, guid: 7c5ad628742ba0b4c8a9fb46051520f8, type: 2}
+  faceMaterial: {fileID: 2100000, guid: 21a694d3790c7104e9462c43237463a8, type: 2}
+  wideEdgesMaterial: {fileID: 2100000, guid: cfc132ca2ec759f44ac0846ca93a1cb7, type: 2}
   lineEdgesMaterial: {fileID: 2100000, guid: 7c5ad628742ba0b4c8a9fb46051520f8, type: 2}
   faceCoplanarityTolerance: 0.01
 --- !u!114 &114401035002008058
@@ -144,7 +144,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae673338fb53afd46b32577d0b9b9063, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewportDistance: 10
   edgeWidth: 0.85
   visualizationType: 0
 --- !u!114 &114789889717370990
