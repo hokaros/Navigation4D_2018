@@ -134,7 +134,7 @@ MonoBehaviour:
   faceMaterial: {fileID: 2100000, guid: 06781869de5433340b24add32784d5ce, type: 2}
   wideEdgesMaterial: {fileID: 2100000, guid: 7c5ad628742ba0b4c8a9fb46051520f8, type: 2}
   lineEdgesMaterial: {fileID: 2100000, guid: 7c5ad628742ba0b4c8a9fb46051520f8, type: 2}
-  faceCoplanarityTolerance: 0.01
+  faceCoplanarityTolerance: 0.001
 --- !u!114 &114466515741791348
 MonoBehaviour:
   m_ObjectHideFlags: 1

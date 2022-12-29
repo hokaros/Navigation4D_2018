@@ -102,7 +102,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae673338fb53afd46b32577d0b9b9063, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewportDistance: 10
   edgeWidth: 0.85
   visualizationType: 0
 --- !u!114 &114443849781700178
@@ -134,7 +133,7 @@ MonoBehaviour:
   faceMaterial: {fileID: 2100000, guid: 23a1a8003b9906b4fbf1db2cfbfce532, type: 2}
   wideEdgesMaterial: {fileID: 2100000, guid: 7c5ad628742ba0b4c8a9fb46051520f8, type: 2}
   lineEdgesMaterial: {fileID: 2100000, guid: 7c5ad628742ba0b4c8a9fb46051520f8, type: 2}
-  faceCoplanarityTolerance: 0.01
+  faceCoplanarityTolerance: 0.001
 --- !u!114 &114763188521590910
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -160,7 +159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vertexRadius: 0.3
   visualizationType: 2
-  faceCoplanarityTolerance: 0.01
+  faceCoplanarityTolerance: 0.001
 --- !u!114 &114929171595946282
 MonoBehaviour:
   m_ObjectHideFlags: 1
