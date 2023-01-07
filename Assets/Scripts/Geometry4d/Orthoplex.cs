@@ -62,38 +62,38 @@ public class Orthoplex : Polytope4 {
 		get
 		{
 			List<List<int>> faces = new List<List<int>>();
-			faces.Add(new List<int>() { 0, 1, 2 });
-			faces.Add(new List<int>() { 0, 1, 3 });
-			faces.Add(new List<int>() { 0, 1, 4 });
-			faces.Add(new List<int>() { 0, 1, 5 });
-			faces.Add(new List<int>() { 0, 2, 3 });
 			faces.Add(new List<int>() { 0, 2, 4 });
+			faces.Add(new List<int>() { 0, 2, 5 });
 			faces.Add(new List<int>() { 0, 2, 6 });
+			faces.Add(new List<int>() { 0, 2, 7 });
+			faces.Add(new List<int>() { 0, 3, 4 });
 			faces.Add(new List<int>() { 0, 3, 5 });
 			faces.Add(new List<int>() { 0, 3, 6 });
-			faces.Add(new List<int>() { 0, 4, 5 });
+			faces.Add(new List<int>() { 0, 3, 7 });
 			faces.Add(new List<int>() { 0, 4, 6 });
+			faces.Add(new List<int>() { 0, 4, 7 });
 			faces.Add(new List<int>() { 0, 5, 6 });
-			faces.Add(new List<int>() { 1, 2, 3 });
+			faces.Add(new List<int>() { 0, 5, 7 });
 			faces.Add(new List<int>() { 1, 2, 4 });
+			faces.Add(new List<int>() { 1, 2, 5 });
+			faces.Add(new List<int>() { 1, 2, 6 });
 			faces.Add(new List<int>() { 1, 2, 7 });
+			faces.Add(new List<int>() { 1, 3, 4 });
 			faces.Add(new List<int>() { 1, 3, 5 });
+			faces.Add(new List<int>() { 1, 3, 6 });
 			faces.Add(new List<int>() { 1, 3, 7 });
-			faces.Add(new List<int>() { 1, 4, 5 });
+			faces.Add(new List<int>() { 1, 4, 6 });
 			faces.Add(new List<int>() { 1, 4, 7 });
+			faces.Add(new List<int>() { 1, 5, 6 });
 			faces.Add(new List<int>() { 1, 5, 7 });
-			faces.Add(new List<int>() { 2, 3, 6 });
-			faces.Add(new List<int>() { 2, 3, 7 });
 			faces.Add(new List<int>() { 2, 4, 6 });
 			faces.Add(new List<int>() { 2, 4, 7 });
-			faces.Add(new List<int>() { 2, 6, 7 });
+			faces.Add(new List<int>() { 2, 5, 6 });
+			faces.Add(new List<int>() { 2, 5, 7 });
+			faces.Add(new List<int>() { 3, 4, 6 });
+			faces.Add(new List<int>() { 3, 4, 7 });
 			faces.Add(new List<int>() { 3, 5, 6 });
 			faces.Add(new List<int>() { 3, 5, 7 });
-			faces.Add(new List<int>() { 3, 6, 7 });
-			faces.Add(new List<int>() { 4, 5, 6 });
-			faces.Add(new List<int>() { 4, 5, 7 });
-			faces.Add(new List<int>() { 4, 6, 7 });
-			faces.Add(new List<int>() { 5, 6, 7 });
 
 			return faces;
 		}
