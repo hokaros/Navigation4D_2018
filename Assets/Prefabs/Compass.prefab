@@ -19,6 +19,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4962420805716060}
+  - component: {fileID: 114027819020281200}
+  - component: {fileID: 114524986349428330}
   m_Layer: 0
   m_Name: Compass
   m_TagString: Untagged
@@ -198,9 +200,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 06781869de5433340b24add32784d5ce, type: 2}
-  - {fileID: 2100000, guid: 7c5ad628742ba0b4c8a9fb46051520f8, type: 2}
-  - {fileID: 2100000, guid: 7c5ad628742ba0b4c8a9fb46051520f8, type: 2}
+  - {fileID: 2100000, guid: 40b9753bafc309949b49c77a57ceb749, type: 2}
+  - {fileID: 2100000, guid: 11756234ca564b94fbfc88af6c51f105, type: 2}
+  - {fileID: 2100000, guid: 11756234ca564b94fbfc88af6c51f105, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -235,9 +237,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 06781869de5433340b24add32784d5ce, type: 2}
-  - {fileID: 2100000, guid: 7c5ad628742ba0b4c8a9fb46051520f8, type: 2}
-  - {fileID: 2100000, guid: 7c5ad628742ba0b4c8a9fb46051520f8, type: 2}
+  - {fileID: 2100000, guid: b4c8dfe3e4608054f843347bddf36f46, type: 2}
+  - {fileID: 2100000, guid: 11756234ca564b94fbfc88af6c51f105, type: 2}
+  - {fileID: 2100000, guid: 11756234ca564b94fbfc88af6c51f105, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -272,9 +274,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 06781869de5433340b24add32784d5ce, type: 2}
-  - {fileID: 2100000, guid: 7c5ad628742ba0b4c8a9fb46051520f8, type: 2}
-  - {fileID: 2100000, guid: 7c5ad628742ba0b4c8a9fb46051520f8, type: 2}
+  - {fileID: 2100000, guid: 38c8c4536357d2f4c88c88f5c18fa6e5, type: 2}
+  - {fileID: 2100000, guid: 11756234ca564b94fbfc88af6c51f105, type: 2}
+  - {fileID: 2100000, guid: 11756234ca564b94fbfc88af6c51f105, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -309,9 +311,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 06781869de5433340b24add32784d5ce, type: 2}
-  - {fileID: 2100000, guid: 7c5ad628742ba0b4c8a9fb46051520f8, type: 2}
-  - {fileID: 2100000, guid: 7c5ad628742ba0b4c8a9fb46051520f8, type: 2}
+  - {fileID: 2100000, guid: 473f9df5659590743bf00fa0aeef250e, type: 2}
+  - {fileID: 2100000, guid: 11756234ca564b94fbfc88af6c51f105, type: 2}
+  - {fileID: 2100000, guid: 11756234ca564b94fbfc88af6c51f105, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -359,6 +361,26 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1658340889554492}
   m_Mesh: {fileID: 0}
+--- !u!114 &114027819020281200
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1096980804725238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cf54f86f1d01844e9e3c75d03ac766e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  position: {x: 0, y: 0, z: 0, w: 0}
+  initialRotation:
+    xy: 0
+    xz: 0
+    xw: 0
+    yz: 0
+    yw: 0
+    zw: 0
+  updateRotationInPlayMode: 0
 --- !u!114 &114046014441336120
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -370,7 +392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cf54f86f1d01844e9e3c75d03ac766e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  position: {x: 0, y: 0, z: 10.4, w: 0}
+  position: {x: 0, y: 0, z: 0.3, w: 0}
   initialRotation:
     xy: 0
     xz: 0
@@ -390,7 +412,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cf54f86f1d01844e9e3c75d03ac766e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  position: {x: 0, y: 0, z: 10.4, w: 0}
+  position: {x: 0, y: 0, z: 0, w: 0.3}
   initialRotation:
     xy: 0
     xz: 0
@@ -410,7 +432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cf54f86f1d01844e9e3c75d03ac766e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  position: {x: 0, y: 0, z: 10.4, w: 0}
+  position: {x: 0.3, y: 0, z: 0, w: 0}
   initialRotation:
     xy: 0
     xz: 0
@@ -443,10 +465,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 530ce37715583df47a1de9724cbc95da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sizeX: 1
-  sizeY: 5
-  sizeZ: 1
-  sizeW: 1
+  sizeX: 0.1
+  sizeY: 0.5
+  sizeZ: 0.1
+  sizeW: 0.1
 --- !u!114 &114162106568544826
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -471,9 +493,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d94f33163f96b74439cb012c41aced5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  faceMaterial: {fileID: 2100000, guid: 06781869de5433340b24add32784d5ce, type: 2}
-  wideEdgesMaterial: {fileID: 2100000, guid: 7c5ad628742ba0b4c8a9fb46051520f8, type: 2}
-  lineEdgesMaterial: {fileID: 2100000, guid: 7c5ad628742ba0b4c8a9fb46051520f8, type: 2}
+  faceMaterial: {fileID: 2100000, guid: 40b9753bafc309949b49c77a57ceb749, type: 2}
+  wideEdgesMaterial: {fileID: 2100000, guid: 11756234ca564b94fbfc88af6c51f105, type: 2}
+  lineEdgesMaterial: {fileID: 2100000, guid: 11756234ca564b94fbfc88af6c51f105, type: 2}
   faceCoplanarityTolerance: 0.001
 --- !u!114 &114219253256039228
 MonoBehaviour:
@@ -486,10 +508,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 530ce37715583df47a1de9724cbc95da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sizeX: 1
-  sizeY: 1
-  sizeZ: 5
-  sizeW: 1
+  sizeX: 0.1
+  sizeY: 0.1
+  sizeZ: 0.5
+  sizeW: 0.1
 --- !u!114 &114238656602357938
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -557,9 +579,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d94f33163f96b74439cb012c41aced5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  faceMaterial: {fileID: 2100000, guid: 06781869de5433340b24add32784d5ce, type: 2}
-  wideEdgesMaterial: {fileID: 2100000, guid: 7c5ad628742ba0b4c8a9fb46051520f8, type: 2}
-  lineEdgesMaterial: {fileID: 2100000, guid: 7c5ad628742ba0b4c8a9fb46051520f8, type: 2}
+  faceMaterial: {fileID: 2100000, guid: 38c8c4536357d2f4c88c88f5c18fa6e5, type: 2}
+  wideEdgesMaterial: {fileID: 2100000, guid: 11756234ca564b94fbfc88af6c51f105, type: 2}
+  lineEdgesMaterial: {fileID: 2100000, guid: 11756234ca564b94fbfc88af6c51f105, type: 2}
   faceCoplanarityTolerance: 0.001
 --- !u!114 &114439103037421710
 MonoBehaviour:
@@ -572,10 +594,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 530ce37715583df47a1de9724cbc95da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sizeX: 5
-  sizeY: 1
-  sizeZ: 1
-  sizeW: 1
+  sizeX: 0.5
+  sizeY: 0.1
+  sizeZ: 0.1
+  sizeW: 0.1
 --- !u!114 &114503164359986140
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -587,10 +609,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 530ce37715583df47a1de9724cbc95da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sizeX: 1
-  sizeY: 1
-  sizeZ: 1
-  sizeW: 5
+  sizeX: 0.1
+  sizeY: 0.1
+  sizeZ: 0.1
+  sizeW: 0.5
 --- !u!114 &114522021614195508
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -602,10 +624,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d94f33163f96b74439cb012c41aced5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  faceMaterial: {fileID: 2100000, guid: 06781869de5433340b24add32784d5ce, type: 2}
-  wideEdgesMaterial: {fileID: 2100000, guid: 7c5ad628742ba0b4c8a9fb46051520f8, type: 2}
-  lineEdgesMaterial: {fileID: 2100000, guid: 7c5ad628742ba0b4c8a9fb46051520f8, type: 2}
+  faceMaterial: {fileID: 2100000, guid: b4c8dfe3e4608054f843347bddf36f46, type: 2}
+  wideEdgesMaterial: {fileID: 2100000, guid: 11756234ca564b94fbfc88af6c51f105, type: 2}
+  lineEdgesMaterial: {fileID: 2100000, guid: 11756234ca564b94fbfc88af6c51f105, type: 2}
   faceCoplanarityTolerance: 0.001
+--- !u!114 &114524986349428330
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1096980804725238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e1024ee5eb0afe41aed80b68fb5e705, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  followedTransform: {fileID: 0}
+  offset: {x: 0.98, y: 0.24, z: 5, w: 0}
+  correctHeadPosition: 1
 --- !u!114 &114661529513932232
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -632,7 +668,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cf54f86f1d01844e9e3c75d03ac766e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  position: {x: 0, y: 0, z: 10.4, w: 0}
+  position: {x: 0, y: 0.3, z: 0, w: 0}
   initialRotation:
     xy: 0
     xz: 0
@@ -652,9 +688,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d94f33163f96b74439cb012c41aced5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  faceMaterial: {fileID: 2100000, guid: 06781869de5433340b24add32784d5ce, type: 2}
-  wideEdgesMaterial: {fileID: 2100000, guid: 7c5ad628742ba0b4c8a9fb46051520f8, type: 2}
-  lineEdgesMaterial: {fileID: 2100000, guid: 7c5ad628742ba0b4c8a9fb46051520f8, type: 2}
+  faceMaterial: {fileID: 2100000, guid: 473f9df5659590743bf00fa0aeef250e, type: 2}
+  wideEdgesMaterial: {fileID: 2100000, guid: 11756234ca564b94fbfc88af6c51f105, type: 2}
+  lineEdgesMaterial: {fileID: 2100000, guid: 11756234ca564b94fbfc88af6c51f105, type: 2}
   faceCoplanarityTolerance: 0.001
 --- !u!114 &114848922484888244
 MonoBehaviour:
