@@ -60,11 +60,27 @@ public class EdgeMesh4
                 if (cycle.Min() != edgeIndex)
                     continue; // Makes sure that only one edge adds a face
 
+                if(StructureAlgorithms.ContainsDuplicates(cycle) || cycle.Count < 3)
+                {
+                    int x = 1;
+                }
                 faces.Add(cycle);
             }
         }
 
         return faces;
+    }
+
+    private List<List<int>> CopyListOfLists(List<List<int>> l)
+    {
+        List<List<int>> result = new List<List<int>>();
+        for(int i = 0; i < l.Count; i++)
+        {
+            List<int> sublist = l[i];
+            result.Add(new List<int>(sublist));
+        }
+
+        return result;
     }
 
     private static void VertexEdgesToIndexEdges(List<VertexEdge4> vertexEdges, out List<Vector4> uniqueVertices, out List<Edge> indexEdges)
@@ -189,7 +205,11 @@ public class EdgeMesh4
         int currentEdge = edge2;
         while (true)
         {
-            int? nextEdge = GetCoplanarNeighbour(currentEdge, previousEdge, a, b, c, coplanarityTolerance); // ignore the previous edge so we don't come back
+            int cycleStart = edge1;
+            if (previousEdge == edge1)
+                cycleStart = -1; // Disallow 2-edge cycles
+
+            int? nextEdge = GetCoplanarNeighbour(currentEdge, result, cycleStart, a, b, c, coplanarityTolerance); // ignore the previous edge so we don't come back
             if (!nextEdge.HasValue)
                 return null; // Failed to create a full planar cycle
 
@@ -208,7 +228,7 @@ public class EdgeMesh4
     /// <summary>
     /// Returns a neighbour of edge which is not ignoreEdge and is coplanar with points a,b,c
     /// </summary>
-    private int? GetCoplanarNeighbour(int edge, int ignoreEdge, Vector3 a, Vector3 b, Vector3 c, float coplanarityTolerance)
+    private int? GetCoplanarNeighbour(int edge, List<int> ignoredEdges, int unignoredEdge, Vector3 a, Vector3 b, Vector3 c, float coplanarityTolerance)
     {
         if (!edgeNeighbouring.ContainsKey(edge))
             return null; // No neighbours
@@ -221,7 +241,7 @@ public class EdgeMesh4
 
         foreach (int neighbourIndex in neighbours)
         {
-            if (neighbourIndex == ignoreEdge)
+            if (neighbourIndex != unignoredEdge && ignoredEdges.Contains(neighbourIndex))
                 continue;
 
             int neighbourStartIndex = edges[neighbourIndex].startId;
