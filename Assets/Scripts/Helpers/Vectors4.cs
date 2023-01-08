@@ -39,4 +39,9 @@ public static class Vectors4
 
         return true;
     }
+
+    public static Vector4 Project(Vector4 v, Vector4 direction)
+    {
+        return Vector4.Dot(v, direction) * direction / direction.sqrMagnitude;
+    }
 }
