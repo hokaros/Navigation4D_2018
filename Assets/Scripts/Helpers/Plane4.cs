@@ -172,18 +172,8 @@ public struct Plane4
             t = (-handle.x - s * spanning2.x + d.x) / spanning1.x;
         }
 
-
         Vector4 coplanarD = handle + t * spanning1 + s * spanning2;
         // Compare vectors
-        if (Mathf.Abs(coplanarD.x - d.x) > tolerance)
-            return false;
-        if (Mathf.Abs(coplanarD.y - d.y) > tolerance)
-            return false;
-        if (Mathf.Abs(coplanarD.z - d.z) > tolerance)
-            return false;
-        if (Mathf.Abs(coplanarD.w - d.w) > tolerance)
-            return false;
-
-        return true;
+        return Vectors4.AreEqual(coplanarD, d, tolerance);
     }
 }

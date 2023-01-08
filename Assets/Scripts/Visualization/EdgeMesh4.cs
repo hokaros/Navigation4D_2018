@@ -196,9 +196,9 @@ public class EdgeMesh4
         int edge2End = edges[edge2].endId;
 
         // Get 3 points that determine the plane
-        Vector3 a = vertices[edge1Start];
-        Vector3 b = vertices[edge1End];
-        Vector3 c = (edge2Start == edge1Start) || (edge2Start == edge1End) ? 
+        Vector4 a = vertices[edge1Start];
+        Vector4 b = vertices[edge1End];
+        Vector4 c = (edge2Start == edge1Start) || (edge2Start == edge1End) ? 
             vertices[edge2End] : vertices[edge2Start]; // choose the vertex that isn't in edge1
 
         int previousEdge = edge1;
@@ -228,7 +228,7 @@ public class EdgeMesh4
     /// <summary>
     /// Returns a neighbour of edge which is not ignoreEdge and is coplanar with points a,b,c
     /// </summary>
-    private int? GetCoplanarNeighbour(int edge, List<int> ignoredEdges, int unignoredEdge, Vector3 a, Vector3 b, Vector3 c, float coplanarityTolerance)
+    private int? GetCoplanarNeighbour(int edge, List<int> ignoredEdges, int unignoredEdge, Vector4 a, Vector4 b, Vector4 c, float coplanarityTolerance)
     {
         if (!edgeNeighbouring.ContainsKey(edge))
             return null; // No neighbours
@@ -244,8 +244,8 @@ public class EdgeMesh4
 
             int neighbourStartIndex = edges[neighbourIndex].startId;
             int neighbourEndIndex = edges[neighbourIndex].endId;
-            Vector3 neighbourStart = vertices[neighbourStartIndex];
-            Vector3 neighbourEnd = vertices[neighbourEndIndex];
+            Vector4 neighbourStart = vertices[neighbourStartIndex];
+            Vector4 neighbourEnd = vertices[neighbourEndIndex];
 
             if (!Plane4.AreCoplanar(a, b, c, neighbourStart, coplanarityTolerance))
                 continue;

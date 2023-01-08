@@ -19,4 +19,24 @@ public static class Vectors4
         foreach (Vector4 element in vector) sum += element;
         return sum;
     }
+
+
+    public static bool AreEqual(Vector4 v1, Vector4 v2)
+    {
+        return AreEqual(v1, v2, Mathf.Epsilon);
+    }
+
+    public static bool AreEqual(Vector4 v1, Vector4 v2, float tolerance)
+    {
+        if (Mathf.Abs(v1.x - v2.x) > tolerance)
+            return false;
+        if (Mathf.Abs(v1.y - v2.y) > tolerance)
+            return false;
+        if (Mathf.Abs(v1.z - v2.z) > tolerance)
+            return false;
+        if (Mathf.Abs(v1.w - v2.w) > tolerance)
+            return false;
+
+        return true;
+    }
 }
