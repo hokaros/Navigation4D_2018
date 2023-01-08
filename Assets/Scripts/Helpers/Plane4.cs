@@ -67,6 +67,14 @@ public struct Plane4
         Vector4 handle = a;
         Vector4 spanning1 = b - a;
         Vector4 spanning2 = c - a;
+        spanning2 = GetIndependentVector(spanning2, spanning1);
+
+        Vector4 toD = d - handle;
+        Vector4 projection1 = Vectors4.Project(toD, spanning1);
+        Vector4 projection2 = Vectors4.Project(toD, spanning2);
+        Vector4 projectionsSum = projection1 + projection2;
+
+        return Vector4.Distance(toD, projectionsSum) < tolerance;
 
         // d = handle + t*spanning1 + s*spanning2
         // d_x = handle_x + t*spanning1_x + s*spanning2_x
@@ -172,18 +180,15 @@ public struct Plane4
             t = (-handle.x - s * spanning2.x + d.x) / spanning1.x;
         }
 
-
         Vector4 coplanarD = handle + t * spanning1 + s * spanning2;
         // Compare vectors
-        if (Mathf.Abs(coplanarD.x - d.x) > tolerance)
-            return false;
-        if (Mathf.Abs(coplanarD.y - d.y) > tolerance)
-            return false;
-        if (Mathf.Abs(coplanarD.z - d.z) > tolerance)
-            return false;
-        if (Mathf.Abs(coplanarD.w - d.w) > tolerance)
-            return false;
+        return Vectors4.AreEqual(coplanarD, d, tolerance);
+    }
 
-        return true;
+
+    private static Vector4 GetIndependentVector(Vector4 v, Vector4 avoidedDir)
+    {
+        Vector4 projection = Vectors4.Project(v, avoidedDir);
+        return v - projection;
     }
 }

@@ -60,11 +60,27 @@ public class EdgeMesh4
                 if (cycle.Min() != edgeIndex)
                     continue; // Makes sure that only one edge adds a face
 
+                if(StructureAlgorithms.ContainsDuplicates(cycle) || cycle.Count < 3)
+                {
+                    int x = 1;
+                }
                 faces.Add(cycle);
             }
         }
 
         return faces;
+    }
+
+    private List<List<int>> CopyListOfLists(List<List<int>> l)
+    {
+        List<List<int>> result = new List<List<int>>();
+        for(int i = 0; i < l.Count; i++)
+        {
+            List<int> sublist = l[i];
+            result.Add(new List<int>(sublist));
+        }
+
+        return result;
     }
 
     private static void VertexEdgesToIndexEdges(List<VertexEdge4> vertexEdges, out List<Vector4> uniqueVertices, out List<Edge> indexEdges)
@@ -180,16 +196,20 @@ public class EdgeMesh4
         int edge2End = edges[edge2].endId;
 
         // Get 3 points that determine the plane
-        Vector3 a = vertices[edge1Start];
-        Vector3 b = vertices[edge1End];
-        Vector3 c = (edge2Start == edge1Start) || (edge2Start == edge1End) ? 
+        Vector4 a = vertices[edge1Start];
+        Vector4 b = vertices[edge1End];
+        Vector4 c = (edge2Start == edge1Start) || (edge2Start == edge1End) ? 
             vertices[edge2End] : vertices[edge2Start]; // choose the vertex that isn't in edge1
 
         int previousEdge = edge1;
         int currentEdge = edge2;
         while (true)
         {
-            int? nextEdge = GetCoplanarNeighbour(currentEdge, previousEdge, a, b, c, coplanarityTolerance); // ignore the previous edge so we don't come back
+            int cycleStart = edge1;
+            if (previousEdge == edge1)
+                cycleStart = -1; // Disallow 2-edge cycles
+
+            int? nextEdge = GetCoplanarNeighbour(currentEdge, result, cycleStart, a, b, c, coplanarityTolerance); // ignore the previous edge so we don't come back
             if (!nextEdge.HasValue)
                 return null; // Failed to create a full planar cycle
 
@@ -208,7 +228,7 @@ public class EdgeMesh4
     /// <summary>
     /// Returns a neighbour of edge which is not ignoreEdge and is coplanar with points a,b,c
     /// </summary>
-    private int? GetCoplanarNeighbour(int edge, int ignoreEdge, Vector3 a, Vector3 b, Vector3 c, float coplanarityTolerance)
+    private int? GetCoplanarNeighbour(int edge, List<int> ignoredEdges, int unignoredEdge, Vector4 a, Vector4 b, Vector4 c, float coplanarityTolerance)
     {
         if (!edgeNeighbouring.ContainsKey(edge))
             return null; // No neighbours
@@ -217,21 +237,19 @@ public class EdgeMesh4
         if (neighbours.Count == 0)
             return null; // No neighbours
 
-        Plane plane = new Plane(a, b, c);
-
-        foreach (int neighbourIndex in neighbours)
+        foreach(int neighbourIndex in neighbours)
         {
-            if (neighbourIndex == ignoreEdge)
+            if (neighbourIndex != unignoredEdge && ignoredEdges.Contains(neighbourIndex))
                 continue;
 
             int neighbourStartIndex = edges[neighbourIndex].startId;
             int neighbourEndIndex = edges[neighbourIndex].endId;
-            Vector3 neighbourStart = vertices[neighbourStartIndex];
-            Vector3 neighbourEnd = vertices[neighbourEndIndex];
+            Vector4 neighbourStart = vertices[neighbourStartIndex];
+            Vector4 neighbourEnd = vertices[neighbourEndIndex];
 
-            if (Mathf.Abs(plane.GetDistanceToPoint(neighbourStart)) > coplanarityTolerance)
+            if (!Plane4.AreCoplanar(a, b, c, neighbourStart, coplanarityTolerance))
                 continue;
-            if (Mathf.Abs(plane.GetDistanceToPoint(neighbourEnd)) > coplanarityTolerance)
+            if (!Plane4.AreCoplanar(a, b, c, neighbourEnd, coplanarityTolerance))
                 continue;
 
             // Coplanar neighbour
