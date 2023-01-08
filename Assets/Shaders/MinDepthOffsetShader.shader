@@ -1,4 +1,4 @@
-﻿Shader "Unlit/DepthOffsetShader"
+﻿Shader "Unlit/MinDepthOffsetShader"
 {
 	Properties
 	{
@@ -11,7 +11,7 @@
 
 		Pass
 		{
-			Offset -1, -1
+			Offset -0.8, -1
 			CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag
