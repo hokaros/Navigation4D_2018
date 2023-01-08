@@ -237,9 +237,7 @@ public class EdgeMesh4
         if (neighbours.Count == 0)
             return null; // No neighbours
 
-        Plane plane = new Plane(a, b, c);
-
-        foreach (int neighbourIndex in neighbours)
+        foreach(int neighbourIndex in neighbours)
         {
             if (neighbourIndex != unignoredEdge && ignoredEdges.Contains(neighbourIndex))
                 continue;
@@ -249,9 +247,9 @@ public class EdgeMesh4
             Vector3 neighbourStart = vertices[neighbourStartIndex];
             Vector3 neighbourEnd = vertices[neighbourEndIndex];
 
-            if (Mathf.Abs(plane.GetDistanceToPoint(neighbourStart)) > coplanarityTolerance)
+            if (!Plane4.AreCoplanar(a, b, c, neighbourStart, coplanarityTolerance))
                 continue;
-            if (Mathf.Abs(plane.GetDistanceToPoint(neighbourEnd)) > coplanarityTolerance)
+            if (!Plane4.AreCoplanar(a, b, c, neighbourEnd, coplanarityTolerance))
                 continue;
 
             // Coplanar neighbour
