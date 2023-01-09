@@ -51,6 +51,9 @@ public class EdgeMesh4
         // - tworzyć zamknięty cykl
         for (int edgeIndex = 0; edgeIndex < edges.Count; edgeIndex++)
         {
+			if(!edgeNeighbouring.ContainsKey(edgeIndex))
+				continue; // No neighbours
+			
             foreach (int neighbourIndex in edgeNeighbouring[edgeIndex])
             {
                 List<int> cycle = ExtendToPlanarCycle(edgeIndex, neighbourIndex, coplanarityTolerance);
